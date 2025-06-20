@@ -1,0 +1,33 @@
+name: Process Form Data
+
+on:
+  push:
+    paths:
+      - 'data/Template for Processes.xlsx'
+      - 'scripts/process_form_data.py'
+
+jobs:
+  generate-md:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install pandas openpyxl
+
+      - name: Generate Markdown
+        run: python scripts/process_form_data.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "auto-bot"
+          git config user.email "bot@example.com"
+          git add handbook.md/
+          git commit -m "📄 Auto-generated process markdown" || echo "No changes"
+          git push
