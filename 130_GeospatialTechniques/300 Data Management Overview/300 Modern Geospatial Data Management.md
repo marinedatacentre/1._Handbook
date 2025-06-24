@@ -8,11 +8,7 @@
 
 - to periodically update the content
 
-There are both open source and commercial applications which can be
-inter-combined to produce a desired solution. This is possible because
-there are extensive international standards governing every aspect of
-the solution. In fact, even open source solutions are often enhanced
-with commercial add-ons and consulting support.
+There are both open source and commercial applications which can be inter-combined to produce a desired solution. This is possible because there are extensive international standards governing every aspect of the solution. In fact, even open source solutions are often enhanced with commercial add-ons and consulting support.
 
 To understand
 
@@ -22,8 +18,7 @@ To understand
 
 - what are the requirements for a metadata catalogue service, and
 
-- how to connect a local knowledge management system to the
-  international network
+- how to connect a local knowledge management system to the international network
 
 refer to documents 300-F01, 300-F02, 300-F03 and 300-F04 respectively.
 

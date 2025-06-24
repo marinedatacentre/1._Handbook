@@ -2,13 +2,11 @@
 
 **Setting CSS Variables for Dynamic Styling.**
 
-These provide a way to store values like colors, fonts, or any CSS value
-under a custom name.
+These provide a way to store values like colors, fonts, or any CSS value under a custom name.
 
 [Example: Using variables to define PSF branding colours*.*]{.underline}
 
-*Note: using the **:root** selector makes the variables available
-throughout the entire document.*
+*Note: using the **:root** selector makes the variables available throughout the entire document.*
 
 *:root {*
 

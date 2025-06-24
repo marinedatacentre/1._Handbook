@@ -8,13 +8,11 @@
 
 3.  MapInfo Manager ([http://www.pbinsight.com/]{.underline})
 
-***Commonly used Open Source / Freeware metadata editing tools
-include:***
+***Commonly used Open Source / Freeware metadata editing tools include:***
 
 1.  CatMDEdit ([http://catmdedit.sourceforge.net/]{.underline})
 
-2.  GeoNetwork opensource
-    ([http://geonetwork-opensource.org/]{.underline})
+2.  GeoNetwork opensource ([http://geonetwork-opensource.org/]{.underline})
 
 3.  jNAP (Java metadata writer for NAP format)
 

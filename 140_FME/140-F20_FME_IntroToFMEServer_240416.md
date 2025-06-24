@@ -1,7 +1,6 @@
 **Purpose:**
 
-Assist with learning of FME Server operations for a new beginner
-(previous FME Desktop experience recommended)
+Assist with learning of FME Server operations for a new beginner (previous FME Desktop experience recommended)
 
 **Video 1** -- What is FME Server?
 
@@ -19,8 +18,7 @@ It mentions some applications of FME Server include:
 
 - Build end to end complete application integration
 
-**Video 2 -** Getting Started with FME Server 2019: Scheduling a
-Workspace with FME Server Automations
+**Video 2 -** Getting Started with FME Server 2019: Scheduling a Workspace with FME Server Automations
 
 [**https://youtu.be/eYxrkeNSrnw**](https://youtu.be/eYxrkeNSrnw)
 

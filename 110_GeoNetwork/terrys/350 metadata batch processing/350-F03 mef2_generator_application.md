@@ -4,18 +4,15 @@
 
 \"\"\"
 
-Script to create GeoNetwork\'s Metadata Exchange Format 2.0 (MEF2.0)
-archive from ISO 19139 metadata XML files
+Script to create GeoNetwork\'s Metadata Exchange Format 2.0 (MEF2.0) archive from ISO 19139 metadata XML files
 
 Usage: make sure to edit mef_siteId, info_xml, etc.
 
 Change history:
 
-2009-11-06 Wolfgang Grunberg, Arizona Geological Survey. Original Python
-2.6 template
+2009-11-06 Wolfgang Grunberg, Arizona Geological Survey. Original Python 2.6 template
 
-2012-05-23 TAC Changed paths to metadata locations, MEF final locations,
-and
+2012-05-23 TAC Changed paths to metadata locations, MEF final locations, and
 
 temporary work locations. Changed siteID. Changed metadata dateTime
 
@@ -29,14 +26,11 @@ to just date. Major change to loop on MEF, include graphics files.
 
 2014-10-24 TAC modified app for Levings lit refs
 
-\*\*\* NOTE: MEF temporary folder is emptied at application start!
-\*\*\*
+\*\*\* NOTE: MEF temporary folder is emptied at application start! \*\*\*
 
-Upon \'build\' completion, MEF files are ZIP archives with the following
-structure:
+Upon \'build\' completion, MEF files are ZIP archives with the following structure:
 
-+-\<uuid\>.mef zip archive with the metadata\'s UUID (must be valid) as
-the file name
++-\<uuid\>.mef zip archive with the metadata\'s UUID (must be valid) as the file name
 
 \| -info.xml GeoNetwork (GN) specific metadata such as privileges,
 
@@ -50,8 +44,7 @@ related data & thumbnail image files, etc.
 
 \- can be empty
 
-Addresses to the source folders for all metadata, data and graphics to
-be processed.
+Addresses to the source folders for all metadata, data and graphics to be processed.
 
 \"\"\"
 
@@ -97,8 +90,7 @@ from time import strftime
 
 \_\_email\_\_ = \"wgrunberg@azgs.az.gov\"
 
-\_\_status\_\_ = \"Development\" \# \"Prototype\", \"Development\", or
-\"Production\"
+\_\_status\_\_ = \"Development\" \# \"Prototype\", \"Development\", or \"Production\"
 
 \"\"\"
 
@@ -114,8 +106,7 @@ from time import strftime
 
 #=========================================
 
-def is_image_file(filename, extensions=\[\'.jpg\', \'.jpeg\', \'.gif\',
-\'.png\'\]):
+def is_image_file(filename, extensions=\[\'.jpg\', \'.jpeg\', \'.gif\', \'.png\'\]):
 
 return any(filename.endswith(e) for e in extensions)
 
@@ -127,8 +118,7 @@ return any(filename.endswith(e) for e in extensions)
 
 def createMef():
 
-print \"\*\*\*\*\*\\n START Create MEF \"+strftime(\"%Y-%m-%d
-%H:%M:%S\")+\" \\n\*\*\*\*\*\"
+print \"\*\*\*\*\*\\n START Create MEF \"+strftime(\"%Y-%m-%d %H:%M:%S\")+\" \\n\*\*\*\*\*\"
 
 #==========================
 
@@ -156,8 +146,7 @@ path2graphicsS = main_path + \"thumbnails\\\\\"
 
 path2data = main_path + \"data\\\\\"
 
-\# set incremental TEMPORARY WORKSPACE FOLDER to place MEF content
-before zipping up
+\# set incremental TEMPORARY WORKSPACE FOLDER to place MEF content before zipping up
 
 folderToZip = \'tmp\'
 
@@ -169,15 +158,13 @@ path2result = main_path + \"mef\\\\\"
 
 \# set LOG PATH to record packaging information
 
-mefLogFile = path2result + strftime(\"%Y-%m-%dT%H-%M-%S\") +
-\"\_mef_log.txt\"
+mefLogFile = path2result + strftime(\"%Y-%m-%dT%H-%M-%S\") + \"\_mef_log.txt\"
 
 logging.basicConfig(filename=mefLogFile,level=logging.DEBUG,)
 
 output = open(mefLogFile, \'w\' )
 
-output.write (\"\*\*\*\*\* START Create MEF \"+strftime(\"%Y-%m-%d
-%H:%M:%S\")+\" \*\*\*\*\*\\n\")
+output.write (\"\*\*\*\*\* START Create MEF \"+strftime(\"%Y-%m-%d %H:%M:%S\")+\" \*\*\*\*\*\\n\")
 
 \# ensure temporary folder is empty
 
@@ -213,8 +200,7 @@ metaDir = os.listdir(path2meta)
 
 except os.error:
 
-print \" EXCEPTION: directory containing metadata files does not exist
-(\"+path2meta+\") \"
+print \" EXCEPTION: directory containing metadata files does not exist (\"+path2meta+\") \"
 
 return
 
@@ -258,8 +244,7 @@ xmldoc = minidom.parseString(f.read() )
 
 \# get metadata title (first 60 chars)
 
-title =
-xmldoc.getElementsByTagName(\'gmd:citation\')\[0\].getElementsByTagName(\'gmd:CI_Citation\')\[0\].getElementsByTagName(\'gmd:title\')\[0\].getElementsByTagName(\'gco:CharacterString\')\[0\].firstChild.data
+title = xmldoc.getElementsByTagName(\'gmd:citation\')\[0\].getElementsByTagName(\'gmd:CI_Citation\')\[0\].getElementsByTagName(\'gmd:title\')\[0\].getElementsByTagName(\'gco:CharacterString\')\[0\].firstChild.data
 
 print \"title (60 chars): \", title\[0:60\]
 
@@ -269,20 +254,17 @@ output.write (\"\\n\" + title\[0:55\] + \"\\n\")
 
 try:
 
-create_date =
-xmldoc.getElementsByTagName(\'gmd:dateStamp\')\[0\].getElementsByTagName(\'gco:Date\')\[0\].firstChild.data
+create_date = xmldoc.getElementsByTagName(\'gmd:dateStamp\')\[0\].getElementsByTagName(\'gco:Date\')\[0\].firstChild.data
 
 except:
 
-create_date =
-xmldoc.getElementsByTagName(\'gmd:dateStamp\')\[0\].getElementsByTagName(\'gco:DateTime\')\[0\].firstChild.data
+create_date = xmldoc.getElementsByTagName(\'gmd:dateStamp\')\[0\].getElementsByTagName(\'gco:DateTime\')\[0\].firstChild.data
 
 \# print \"createDate: \", create_date \# debug
 
 \# get metadata uuid =\> recordId
 
-recordId =
-xmldoc.getElementsByTagName(\'gmd:fileIdentifier\')\[0\].getElementsByTagName(\'gco:CharacterString\')\[0\].firstChild.data
+recordId = xmldoc.getElementsByTagName(\'gmd:fileIdentifier\')\[0\].getElementsByTagName(\'gco:CharacterString\')\[0\].firstChild.data
 
 print \"uuid: \", recordId \# debug
 
@@ -290,8 +272,7 @@ print \"uuid: \", recordId \# debug
 
 \# create temporary folder
 
-mef_dir = recordId + \"\\\\\" \# Temporary folder that is created and
-deleted
+mef_dir = recordId + \"\\\\\" \# Temporary folder that is created and deleted
 
 \### tmp paths for mef folders and files
 
@@ -381,8 +362,7 @@ break
 
 if (Thumbnails == \"False\"):
 
-print(\" \# \# \# NO GRAPHICS FILES LIKE: \" + recordName + \" \# \# \#
-#\")
+print(\" \# \# \# NO GRAPHICS FILES LIKE: \" + recordName + \" \# \# \# #\")
 
 output.write (\" \* \* \* no thumbnail files \* \* \*\\n\" )
 
@@ -402,15 +382,13 @@ print \>\>sys.stderr, \" EXCEPTION: \", err
 
 return
 
-\# \... then copy download data file(s) to \'private\' folder, if data
-files exist
+\# \... then copy download data file(s) to \'private\' folder, if data files exist
 
 onLineRecs = 0
 
 try:
 
-onLine =
-xmldoc.getElementsByTagName(\'gmd:MD_DigitalTransferOptions\')\[0\].getElementsByTagName(\'gmd:onLine\')
+onLine = xmldoc.getElementsByTagName(\'gmd:MD_DigitalTransferOptions\')\[0\].getElementsByTagName(\'gmd:onLine\')
 
 onLineRecs = onLine.length
 
@@ -512,9 +490,7 @@ info_xml += \"\<info version=\\\"2.0\\\"\>\\n\<general\>\\n\"
 
 info_xml +=\"\<uuid\>\"+recordId+\"\</uuid\>\\n\"
 
-\# universally unique identifier assigned to the metadata and must be a
-valid UUID. This element is optional and, when omitted, the reader
-should generate one
+\# universally unique identifier assigned to the metadata and must be a valid UUID. This element is optional and, when omitted, the reader should generate one
 
 \# when the metadata was created
 
@@ -522,13 +498,9 @@ info_xml +=\"\<createDate\>\"+create_date+\"\</createDate\>\\n\"
 
 \# most recent change to the metadata
 
-info_xml +=\"\<changeDate\>\"+strftime(\"%Y-%m-%d\" +\"T\" +
-\"%H:%M:%S\")+\"\</changeDate\>\\n\"
+info_xml +=\"\<changeDate\>\"+strftime(\"%Y-%m-%d\" +\"T\" + \"%H:%M:%S\")+\"\</changeDate\>\\n\"
 
-info_xml +=\"\<siteId\>\" +mef_siteId +\"\</siteId\>\\n\" \# This is an
-UUID that identifies the actor that created the metadata and must be a
-valid UUID. When the UUID element is missing, this element should be
-missing too. If present, it will be ignored.
+info_xml +=\"\<siteId\>\" +mef_siteId +\"\</siteId\>\\n\" \# This is an UUID that identifies the actor that created the metadata and must be a valid UUID. When the UUID element is missing, this element should be missing too. If present, it will be ignored.
 
 info_xml +=\"\<siteName\>\" +siteName +\"\</siteName\>\\n\" \# Site Name
 
@@ -550,21 +522,11 @@ else:
 
 info_xml +=\"\<format\>simple\</format\>\\n\"
 
-info_xml +=\"\<isTemplate\>false\</isTemplate\>\\n\" \# A boolean field
-that indicates if this metadata is a template used to create new ones.
-There is no real distinction between a real metadata and a template but
-some actors use it to allow fast metadata creation.
+info_xml +=\"\<isTemplate\>false\</isTemplate\>\\n\" \# A boolean field that indicates if this metadata is a template used to create new ones. There is no real distinction between a real metadata and a template but some actors use it to allow fast metadata creation.
 
-info_xml +=\"\<rating\>0\</rating\>\\n\" \# If present, indicates the
-users\' rating of the metadata ranging from 1 (a bad rating) to 5 (an
-excellent rating). The special value 0 means that the metadata has not
-been rated yet. Can be used to sort search results.
+info_xml +=\"\<rating\>0\</rating\>\\n\" \# If present, indicates the users\' rating of the metadata ranging from 1 (a bad rating) to 5 (an excellent rating). The special value 0 means that the metadata has not been rated yet. Can be used to sort search results.
 
-info_xml +=\"\<popularity\>0\</popularity\>\\n\" \# If present,
-indicates the popularity of the metadata. The value must be positive and
-high values mean high popularity. The criteria used to set the
-popularity is left to the writer. Its main purpose is to provide a
-metadata ordering during a search.
+info_xml +=\"\<popularity\>0\</popularity\>\\n\" \# If present, indicates the popularity of the metadata. The value must be positive and high values mean high popularity. The criteria used to set the popularity is left to the writer. Its main purpose is to provide a metadata ordering during a search.
 
 info_xml +=\"\</general\>\\n\<categories\>\\n\\
 
@@ -592,24 +554,17 @@ if os.path.exists(mefPublicPath+graphics_s):
 
 info_xml +=\"\\
 
-\<file name=\\\"\" +graphics_s +\"\\\" changeDate=\\\"\"
-+strftime(\'%Y-%m-%d\' +\'T\' +
-\'%H:%M:%S\',time.localtime(os.path.getmtime(mefPublicPath+graphics_s)))
-+\"\\\" /\>\\n\"
+\<file name=\\\"\" +graphics_s +\"\\\" changeDate=\\\"\" +strftime(\'%Y-%m-%d\' +\'T\' + \'%H:%M:%S\',time.localtime(os.path.getmtime(mefPublicPath+graphics_s))) +\"\\\" /\>\\n\"
 
 if os.path.exists(mefPublicPath+graphics_l):
 
 info_xml +=\"\\
 
-\<file name=\\\"\" +graphics_l +\"\\\" changeDate=\\\"\"
-+strftime(\'%Y-%m-%d\' +\'T\' +
-\'%H:%M:%S\',time.localtime(os.path.getmtime(mefPublicPath+graphics_l)))
-+\"\\\" /\>\\n\"
+\<file name=\\\"\" +graphics_l +\"\\\" changeDate=\\\"\" +strftime(\'%Y-%m-%d\' +\'T\' + \'%H:%M:%S\',time.localtime(os.path.getmtime(mefPublicPath+graphics_l))) +\"\\\" /\>\\n\"
 
 info_xml +=\"\</public\>\\n\"
 
-\# GN private file - data; require authentication during download
-request
+\# GN private file - data; require authentication during download request
 
 if os.path.exists(mefPrivatePath+recordData):
 
@@ -617,10 +572,7 @@ info_xml +=\"\<private\>\\n\"
 
 for recordData in os.listdir(mefPrivatePath):
 
-info_xml +=\" \<file name=\\\"\" + recordData +\"\\\" changeDate=\\\"\"
-+strftime(\'%Y-%m-%d\' +\'T\' +
-\'%H:%M:%S\',time.localtime(os.path.getmtime(mefPrivatePath+recordData)))
-+\"\\\" /\>\\n\"
+info_xml +=\" \<file name=\\\"\" + recordData +\"\\\" changeDate=\\\"\" +strftime(\'%Y-%m-%d\' +\'T\' + \'%H:%M:%S\',time.localtime(os.path.getmtime(mefPrivatePath+recordData))) +\"\\\" /\>\\n\"
 
 info_xml +=\"\</private\>\"
 
@@ -672,11 +624,9 @@ print \"\\nsaved as:\", path2result +mefFile +\".zip\"
 
 #===================================
 
-print \"\\n\*\*\*\*\*\\n END Create MEF \"+strftime(\"%Y-%m-%d
-%H:%M:%S\")+\" \\n\*\*\*\*\*\"
+print \"\\n\*\*\*\*\*\\n END Create MEF \"+strftime(\"%Y-%m-%d %H:%M:%S\")+\" \\n\*\*\*\*\*\"
 
-output.write (\"\\n\*\*\*\*\* END Create MEF \"+strftime(\"%Y-%m-%d
-%H:%M:%S\")+\"\*\*\*\*\*\")
+output.write (\"\\n\*\*\*\*\* END Create MEF \"+strftime(\"%Y-%m-%d %H:%M:%S\")+\"\*\*\*\*\*\")
 
 #=======================
 

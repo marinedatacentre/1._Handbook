@@ -167,6 +167,13 @@ running, click the DBMS link (Figure 1). In this example, we configure GeoNetwor
 the MySQL database that we created previously. Then click the Save when finished.
 © 2012 NETMAR Consortium 6 EC FP7 Project No. 249024
 
+| mysql -u root –p |
+| --- |
+| create database myDatabase; |
+| CREATE USER 'myUsername'@localhost IDENTIFIED BY 'myPassword'; |
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP ON *.* |
+| TO 'myUsername'@'localhost'; |
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 Figure 1 GeoNetwork GAST – DBMS configuration
 Next, we need to initialise this new database for GeoNetwork 2.6.4 by creating tables that are
@@ -183,6 +190,13 @@ isolanguagesDec, Regions, RegionsDes, Users, Operations,
 OperationsDes, Groups, GroupsDes, UsersGroups, CategorisesDes,
 Metadata, MetadataCateg, OperationAllowed]
 © 2012 NETMAR Consortium 7 EC FP7 Project No. 249024
+
+| Error: Cyclic reference found: |
+| --- |
+| [relations, categories, settings, languages, sources, isolanguages, |
+| isolanguagesDec, Regions, RegionsDes, Users, Operations, |
+| OperationsDes, Groups, GroupsDes, UsersGroups, CategorisesDes, |
+| Metadata, MetadataCateg, OperationAllowed] |
 
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 This error message can be ignored. Please click “OK” in this dialog box, and the GeoNetwork
@@ -224,6 +238,21 @@ The default McKoiDB RDBMS database must be removed from config.xml:
 <password>Qf7Po9T0</password>
 © 2012 NETMAR Consortium 8 EC FP7 Project No. 249024
 
+| <Context docBase=".../geonetwork/web/geonetwork/" |
+| --- |
+| privileged="true" |
+| antiResourceLocking="false" |
+| antiJARLocking="false"> |
+| </Context> |
+
+| <resource enabled="true"> |
+| --- |
+| <name>main-db</name> |
+| <provider>jeeves.resources.dbms.DbmsPool</provider> |
+| <config> |
+| <user>BayACrsQ</user> |
+| <password>Qf7Po9T0</password> |
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 <driver>com.mckoi.JDBCDriver</driver>
 <url>jdbc:mckoi://localhost:9157/</url>
@@ -261,6 +290,29 @@ Stopping GeoNetwork 2.6.4 (required for Jetty)
 If you installed GeoNetwork using the embedded Jetty, you can stop GeoNetwork on Windows
 by clicking:
 © 2012 NETMAR Consortium 9 EC FP7 Project No. 249024
+
+| <driver>com.mckoi.JDBCDriver</driver> |
+| --- |
+| <url>jdbc:mckoi://localhost:9157/</url> |
+| <poolSize>10</poolSize> |
+| </config> |
+| <activator class="org.fao.geonet.activators.McKoiActivator"> |
+| <configFile>WEB-INF/db/db.conf</configFile> |
+| </activator> |
+| </resource> |
+
+| <resource enabled="true"> |
+| --- |
+| <name>main-db</name> |
+| <provider>jeeves.resources.dbms.DbmsPool</provider> |
+| <config> |
+| <user>myUsername</user> |
+| <password>myPassword</password> |
+| <driver>com.mysql.jdbc.Driver</driver> |
+| <url>jdbc:mysql://localhost/myDatabase</url> |
+| <poolSize>10</poolSize> |
+| </config> |
+| </resource> |
 
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 Start Server (under Start > Programs > GeoNetwork opensource)
@@ -353,6 +405,15 @@ July 2012)
 6 http://www.geonetwork-opensource.org/manuals/2.6.4/eng/developer/xml_services/csw_services.html (accessed 19 July 2012)
 © 2012 NETMAR Consortium 12 EC FP7 Project No. 249024
 
+| http://netmar.ucc.ie/geonetwork/srv/en/csw? |
+| --- |
+| SERVICE=CSW& |
+| REQUEST=GetRecordById& |
+| VERSION=2.0.2& |
+| elementSetName=full& |
+| outputSchema=csw:IsoRecord& |
+| ID=64c8493d6bd95d93b7e04fb868fd568e |
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 The example below contains the response with an extract of the requested ISO 19139 metadata
 record:
@@ -401,6 +462,48 @@ elementSet="full"
 nextRecord="0">
 © 2012 NETMAR Consortium 13 EC FP7 Project No. 249024
 
+| <csw:GetRecordByIdResponse> |
+| --- |
+| <gmd:MD_Metadata> |
+| <gmd:fileIdentifier> |
+| <gco:CharacterString> |
+| 64c8493d6bd95d93b7e04fb868fd568e |
+| </gco:CharacterString> |
+| </gmd:fileIdentifier> |
+| . |
+| . |
+| . |
+| </gmd:MD_Metadata> |
+| </csw:GetRecordByIdResponse> |
+
+| http://netmar.ucc.ie/geonetwork/srv/en/csw? |
+| --- |
+| SERVICE=CSW& |
+| REQUEST=GetRecords& |
+| VERSION=2.0.2& |
+| resultType=results& |
+| elementSetName=full& |
+| outputSchema=http://www.isotc211.org/2005/gmd& |
+| typeNames=csw:Record& |
+| constraintLanguage=FILTER& |
+| constraint_language_version=1.1.0& |
+| constraint= |
+| <Filter xmlns="http://www.opengis.net/ogc" |
+| xmlns:gml="http://www.opengis.net/gml"> |
+| <PropertyIsLike> |
+| <PropertyName>any</PropertyName> |
+| <Literal>GEBCO_08</Literal> |
+| </PropertyIsLike> |
+| </Filter> |
+
+| <csw:GetRecordsResponse> |
+| --- |
+| <csw:SearchStatus timestamp="2012-07-26T17:07:29"/> |
+| <csw:SearchResults numberOfRecordsMatched="1" |
+| numberOfRecordsReturned="1" |
+| elementSet="full" |
+| nextRecord="0"> |
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 <gmd:MD_Metadata>
 .
@@ -439,3 +542,20 @@ Revisions 2.1 Responses to NETMAR internal review
 2.0 Comments from ICAN community
 1.0 2011 December 23
 © 2012 NETMAR Consortium 14 EC FP7 Project No. 249024
+
+| <gmd:MD_Metadata> |
+| --- |
+| . |
+| . |
+| . |
+| <gmd:title> |
+| <gco:CharacterString> |
+| General Bathymetric Chart of the Oceans GEBCO_08 Grid |
+| </gco:CharacterString> |
+| </gmd:title> |
+| . |
+| . |
+| . |
+| </gmd:MD_Metadata> |
+| </csw:SearchResults> |
+| </csw:GetRecordsResponse> |

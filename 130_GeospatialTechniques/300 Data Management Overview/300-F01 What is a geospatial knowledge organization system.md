@@ -325,6 +325,29 @@ Quest”) than (“research vessel”)
 Quest”) than (“platform”)
 © 2012 NETMAR Consortium 11 EC FP7 Project No. 249024
 
+| Concept
+Key | Concept
+name and
+title | Concept
+alternative name | Concept definition |
+| --- | --- | --- | --- |
+| 74PQ | Plymouth
+Quest | PQ | {"title": "RV","callsign": "MEEU8",
+"platformClass": "research vessel",
+"commissioned": "2004-03-
+24","previous_name": "Sigurbjorg"} |
+
+| Subject | Relationship | Object |
+| --- | --- | --- |
+| 74PQ (“Plymouth
+Quest”) | Is narrower
+than | http://vocab.nerc.ac.uk/collection/L06/current/31/
+(“research vessel”) |
+| 74PQ (“Plymouth
+Quest”) | Is narrower
+than | http://vocab.nerc.ac.uk/collection/L19/current/SDNKG04
+(“platform”) |
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 1
 Once complete, the spreadsheet should be submitted to enquiries@bodc.ac.uk along with
 supporting information about the domain scope of the concepts, the content governance for the
