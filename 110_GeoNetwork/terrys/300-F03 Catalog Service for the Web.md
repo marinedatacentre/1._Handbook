@@ -168,7 +168,7 @@ the MySQL database that we created previously. Then click the Save when finished
 © 2012 NETMAR Consortium 6 EC FP7 Project No. 249024
 
 | mysql -u root –p |
-| --- |
+|----------------|
 | create database myDatabase; |
 | CREATE USER 'myUsername'@localhost IDENTIFIED BY 'myPassword'; |
 | GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, DROP ON *.* |
@@ -192,7 +192,7 @@ Metadata, MetadataCateg, OperationAllowed]
 © 2012 NETMAR Consortium 7 EC FP7 Project No. 249024
 
 | Error: Cyclic reference found: |
-| --- |
+|------------------------------|
 | [relations, categories, settings, languages, sources, isolanguages, |
 | isolanguagesDec, Regions, RegionsDes, Users, Operations, |
 | OperationsDes, Groups, GroupsDes, UsersGroups, CategorisesDes, |
@@ -239,14 +239,14 @@ The default McKoiDB RDBMS database must be removed from config.xml:
 © 2012 NETMAR Consortium 8 EC FP7 Project No. 249024
 
 | <Context docBase=".../geonetwork/web/geonetwork/" |
-| --- |
+|-------------------------------------------------|
 | privileged="true" |
 | antiResourceLocking="false" |
 | antiJARLocking="false"> |
 | </Context> |
 
 | <resource enabled="true"> |
-| --- |
+|-------------------------|
 | <name>main-db</name> |
 | <provider>jeeves.resources.dbms.DbmsPool</provider> |
 | <config> |
@@ -292,7 +292,7 @@ by clicking:
 © 2012 NETMAR Consortium 9 EC FP7 Project No. 249024
 
 | <driver>com.mckoi.JDBCDriver</driver> |
-| --- |
+|-------------------------------------|
 | <url>jdbc:mckoi://localhost:9157/</url> |
 | <poolSize>10</poolSize> |
 | </config> |
@@ -302,7 +302,7 @@ by clicking:
 | </resource> |
 
 | <resource enabled="true"> |
-| --- |
+|-------------------------|
 | <name>main-db</name> |
 | <provider>jeeves.resources.dbms.DbmsPool</provider> |
 | <config> |
@@ -406,7 +406,7 @@ July 2012)
 © 2012 NETMAR Consortium 12 EC FP7 Project No. 249024
 
 | http://netmar.ucc.ie/geonetwork/srv/en/csw? |
-| --- |
+|-------------------------------------------|
 | SERVICE=CSW& |
 | REQUEST=GetRecordById& |
 | VERSION=2.0.2& |
@@ -463,7 +463,7 @@ nextRecord="0">
 © 2012 NETMAR Consortium 13 EC FP7 Project No. 249024
 
 | <csw:GetRecordByIdResponse> |
-| --- |
+|---------------------------|
 | <gmd:MD_Metadata> |
 | <gmd:fileIdentifier> |
 | <gco:CharacterString> |
@@ -477,7 +477,7 @@ nextRecord="0">
 | </csw:GetRecordByIdResponse> |
 
 | http://netmar.ucc.ie/geonetwork/srv/en/csw? |
-| --- |
+|-------------------------------------------|
 | SERVICE=CSW& |
 | REQUEST=GetRecords& |
 | VERSION=2.0.2& |
@@ -497,7 +497,7 @@ nextRecord="0">
 | </Filter> |
 
 | <csw:GetRecordsResponse> |
-| --- |
+|------------------------|
 | <csw:SearchStatus timestamp="2012-07-26T17:07:29"/> |
 | <csw:SearchResults numberOfRecordsMatched="1" |
 | numberOfRecordsReturned="1" |
@@ -544,7 +544,7 @@ Revisions 2.1 Responses to NETMAR internal review
 © 2012 NETMAR Consortium 14 EC FP7 Project No. 249024
 
 | <gmd:MD_Metadata> |
-| --- |
+|-----------------|
 | . |
 | . |
 | . |

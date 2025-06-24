@@ -330,7 +330,7 @@ Key | Concept
 name and
 title | Concept
 alternative name | Concept definition |
-| --- | --- | --- | --- |
+|-----------|----------------------|------------------------|------------------|
 | 74PQ | Plymouth
 Quest | PQ | {"title": "RV","callsign": "MEEU8",
 "platformClass": "research vessel",
@@ -338,7 +338,7 @@ Quest | PQ | {"title": "RV","callsign": "MEEU8",
 24","previous_name": "Sigurbjorg"} |
 
 | Subject | Relationship | Object |
-| --- | --- | --- |
+|-------|------------|------|
 | 74PQ (“Plymouth
 Quest”) | Is narrower
 than | http://vocab.nerc.ac.uk/collection/L06/current/31/
