@@ -1,3 +1,12 @@
+---
+process_number: 110-03
+title: Metadata_StandardizeRecordsInGeonetwork_240410
+author: Paulina Salinas Ruiz
+created: 2024-04-10
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 

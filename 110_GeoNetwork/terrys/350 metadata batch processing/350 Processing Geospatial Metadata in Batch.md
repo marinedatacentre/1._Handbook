@@ -1,3 +1,12 @@
+---
+process_number: 350
+title: Processing Geospatial Metadata in Batch
+author: Peter
+created: 2014-05-09
+modified: 2015-03-20
+review_period: 3 years
+---
+
 **Purpose:**
 
 

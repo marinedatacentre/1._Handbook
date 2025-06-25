@@ -1,3 +1,12 @@
+---
+process_number: 110-02
+title: Metadata_ImportingJNAPRecordsToGeonetwork_240410
+author: Paulina Salinas Ruiz
+created: 2024-04-10
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 

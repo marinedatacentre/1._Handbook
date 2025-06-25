@@ -1,3 +1,12 @@
+---
+process_number: 03
+title: GeoServerAnimation_CreationProcess
+author: Benjamin Skinner
+created: 2017-01-09
+modified: 2024-02-29
+review_period: 3 years
+---
+
 **Purpose:**
 
 

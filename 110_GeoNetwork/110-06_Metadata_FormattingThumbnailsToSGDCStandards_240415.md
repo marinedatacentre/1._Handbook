@@ -1,3 +1,12 @@
+---
+process_number: 110-06
+title: Metadata_FormattingThumbnailsToSGDCStandards_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 
