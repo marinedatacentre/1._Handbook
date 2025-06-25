@@ -1,24 +1,24 @@
 > **Purpose:\**
+
 > This document defines the standardized process for accessing and installing GeoNetwork in compliance with ISO 9000 quality management principles, ensuring consistency, efficiency, and traceability.
 
-+------------+------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Step**   | **Major Activity**                             | **References, Forms and Details**                                                                                                                                                                                                                                              |
-+:==========:+================================================+================================================================================================================================================================================================================================================================================+
-| **1**      | Check pre-installation requirements            | - Verify system compatibility (Java, Tomcat, PostgreSQL, or other required dependencies).                                                                                                                                                                                      |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | - Check in with Terry in regard to admin. access to server.                                                                                                                                                                                                                    |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | - Make sure you install the GeoNetwork version currently used in the Data Centre.                                                                                                                                                                                              |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | Note: unless performing work on the server side of our site, please contact Terry to provide with the appropriate permissions to our [data portal,](https://soggy2.zoology.ubc.ca/geonetwork/srv/eng/catalog.search#/home) which does not need the installation of GeoNetwork. |
-+------------+------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **2**      | Installation procedure                         | - Download [GeoNetwork](https://docs.geonetwork-opensource.org/4.2/).                                                                                                                                                                                                          |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | - Install required dependencies (Java, Tomcat, PostgreSQL). If in doubt, check in with a team member for clarification.                                                                                                                                                        |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | - Configure the database connection in config.xml                                                                                                                                                                                                                              |
-|            |                                                |                                                                                                                                                                                                                                                                                |
-|            |                                                | - Start the GeoNetwork service and verify system logs for errors.                                                                                                                                                                                                              |
-+------------+------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **3**      | Access to Data Centre's GeoNetwork             | - Check in with a Data Centre's team member to provide you with the appropriate permissions for our site.                                                                                                                                                                      |
-+------------+------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+| **Step** | **Major Activity** | **References, Forms and Details** |
+| -------- | ------------------ | --------------------------------- |
+| **1** | Check pre-installation requirements | - Verify system compatibility (Java, Tomcat, PostgreSQL, or other required dependencies). |
+|  |  |  |
+|  |  | - Check in with Terry in regard to admin. access to server. |
+|  |  |  |
+|  |  | - Make sure you install the GeoNetwork version currently used in the Data Centre. |
+|  |  |  |
+|  |  | Note: unless performing work on the server side of our site, please contact Terry to provide with the appropriate permissions to our [data portal,](https://soggy2.zoology.ubc.ca/geonetwork/srv/eng/catalog.search#/home) which does not need the installation of GeoNetwork. |
+| **2** | Installation procedure | - Download [GeoNetwork](https://docs.geonetwork-opensource.org/4.2/). |
+|  |  |  |
+|  |  | - Install required dependencies (Java, Tomcat, PostgreSQL). If in doubt, check in with a team member for clarification. |
+|  |  |  |
+|  |  | - Configure the database connection in config.xml |
+|  |  |  |
+|  |  | - Start the GeoNetwork service and verify system logs for errors. |
+| **3** | Access to Data Centre's GeoNetwork | - Check in with a Data Centre's team member to provide you with the appropriate permissions for our site. |
+

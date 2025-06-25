@@ -1,47 +1,44 @@
 **Purpose:**
 
+
+
 The goal of this process is to provide a guide to standardize metadata records in the SGDC. (add more info),
 
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Step**           | **Major Activity**                                                                                                           | **References, Forms and Details**                                                                                                                                         |
-+:==================:+==============================================================================================================================+===========================================================================================================================================================================+
-| 1                  | > Navigate to SGDC website 🡪 Data 🡪 Marine Data BC Portal                                                                    | - Make sure to sign-in using your SGDC credentials                                                                                                                        |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              | - Navigate to metadata record and select "Edit"                                                                                                                           |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 2                  | > Spatial Extent and Temporal Extent                                                                                         | - Add a "Geographic bounding box" and draw the spatial extent that best fits the metadata record                                                                          |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              | - Make sure to include "Temporal Extent" with date range or date of documents/project. Make sure publication date is there too.                                           |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 3                  | > Add thumbnail                                                                                                              | - Always add a thumbnail.                                                                                                                                                 |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              | - Refer to process [110-06](https://pacificsalmonfoundation-my.sharepoint.com/:w:/g/personal/psalinasruiz_psf_ca/EQdIk9uxw4dLhZiYUZNMFgkBGcktBKNOGNw0tCPr_BFmhg?e=ejQTBF) |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 4                  | Data transfer option section is optional but desirable.  Best to do this after loading into GeoNetwork.  As protocols, use:  | There are many other protocols.  These three options are very common:                                                                                                     |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | - For web address:                                                                                                           | - Use an external web hyperlink to provide more information, or to link to a data provider site for added acknowledgement                                                 |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | WWW:LINK-1.0-http---link                                                                                                     | - Use the download link to provide dataset(s)                                                                                                                             |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | - For file download:                                                                                                         | - Use the map protocol for local map display of data features  and for Google Map display                                                                                 |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | WWW:DOWNLOAD-1.0-http---download                                                                                             |                                                                                                                                                                           |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | - For OGC Web Map Service (ver 1.1.1):                                                                                       |                                                                                                                                                                           |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | OGC:WMS-1.1.1-http-get-map                                                                                                   |                                                                                                                                                                           |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 5                  | Add files to record following this naming convention: "Year_Site_Title"                                                      | - If the file is internal to PSF:                                                                                                                                         |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              |   - Spreadsheet: protect and read only                                                                                                                                    |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              |   - Word document: convert to PDF                                                                                                                                         |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    |                                                                                                                              | - If the file is NOT internal to PSF, maintain original formatting and upload following standard naming convention.                                                       |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 6                  | Add links to record following this naming convention:                                                                        | - Include a short description if appropriate.                                                                                                                             |
-|                    |                                                                                                                              |                                                                                                                                                                           |
-|                    | "Topic_WebsiteName"                                                                                                          |                                                                                                                                                                           |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| 7                  | Save record                                                                                                                  | - Click "Save Metadata" record and publish                                                                                                                                |
-+--------------------+------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+| **Step** | **Major Activity** | **References, Forms and Details** |
+| -------- | ------------------ | --------------------------------- |
+| 1 | > Navigate to SGDC website 🡪 Data 🡪 Marine Data BC Portal | - Make sure to sign-in using your SGDC credentials |
+|  |  |  |
+|  |  | - Navigate to metadata record and select "Edit" |
+| 2 | > Spatial Extent and Temporal Extent | - Add a "Geographic bounding box" and draw the spatial extent that best fits the metadata record |
+|  |  |  |
+|  |  | - Make sure to include "Temporal Extent" with date range or date of documents/project. Make sure publication date is there too. |
+| 3 | > Add thumbnail | - Always add a thumbnail. |
+|  |  |  |
+|  |  | - Refer to process [110-06](https://pacificsalmonfoundation-my.sharepoint.com/:w:/g/personal/psalinasruiz_psf_ca/EQdIk9uxw4dLhZiYUZNMFgkBGcktBKNOGNw0tCPr_BFmhg?e=ejQTBF) |
+| 4 | Data transfer option section is optional but desirable.  Best to do this after loading into GeoNetwork.  As protocols, use: | There are many other protocols.  These three options are very common: |
+|  |  |  |
+|  | - For web address: | - Use an external web hyperlink to provide more information, or to link to a data provider site for added acknowledgement |
+|  |  |  |
+|  | WWW:LINK-1.0-http---link | - Use the download link to provide dataset(s) |
+|  |  |  |
+|  | - For file download: | - Use the map protocol for local map display of data features  and for Google Map display |
+|  |  |  |
+|  | WWW:DOWNLOAD-1.0-http---download |  |
+|  |  |  |
+|  | - For OGC Web Map Service (ver 1.1.1): |  |
+|  |  |  |
+|  | OGC:WMS-1.1.1-http-get-map |  |
+| 5 | Add files to record following this naming convention: "Year_Site_Title" | - If the file is internal to PSF: |
+|  |  |  |
+|  |  | - Spreadsheet: protect and read only |
+|  |  |  |
+|  |  | - Word document: convert to PDF |
+|  |  |  |
+|  |  | - If the file is NOT internal to PSF, maintain original formatting and upload following standard naming convention. |
+| 6 | Add links to record following this naming convention: | - Include a short description if appropriate. |
+|  |  |  |
+|  | "Topic_WebsiteName" |  |
+| 7 | Save record | - Click "Save Metadata" record and publish |
+
