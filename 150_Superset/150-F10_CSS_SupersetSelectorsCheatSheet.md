@@ -1,78 +1,35 @@
----
-process_number: 150-F10
-title: CSS_SupersetSelectorsCheatSheet
-author: Natalia Garcia-Arias
-created: 2024-07-15
-modified: 2024-12-17
-review_period: 3 years
----
-
 # 
-
-
 
 **Setting CSS Variables for Dynamic Styling.**
 
-
-
 These provide a way to store values like colors, fonts, or any CSS value under a custom name.
 
-
-
-[Example: Using variables to define PSF branding colours*.*]{.underline}
-
-
+<u>Example: Using variables to define PSF branding colours*.*</u>
 
 *Note: using the **:root** selector makes the variables available throughout the entire document.*
 
-
-
 *:root {*
 
+*--psf-dark-blue: \#093059;*
 
+*--inverted-text-color: \#ffffff;*
 
-*\--psf-dark-blue: #093059;*
+*--psf-yellow: \#ffd901;*
 
+*--psf-aqua: \#74bdb8;*
 
+*--border-radius: 9px;*
 
-*\--inverted-text-color: #ffffff;*
+*--psf-beige: \#f8f2e6;*
 
-
-
-*\--psf-yellow: #ffd901;*
-
-
-
-*\--psf-aqua: #74bdb8;*
-
-
-
-*\--border-radius: 9px;*
-
-
-
-*\--psf-beige: #f8f2e6;*
-
-
-
-*\--psf-dark-teal: #0a4b60;*
-
-
+*--psf-dark-teal: \#0a4b60;*
 
 *}*
 
-
-
-[Example CSS Variable Reference:]{.underline}
-
-
+<u>Example CSS Variable Reference:</u>
 
 element {
 
-
-
-> color: var(\-- psf-dark-blue);
-
-
+> color: var(-- psf-dark-blue);
 
 }

@@ -1,26 +1,41 @@
----
-process_number: 150-01
-title: UsingInspectElementTool_241217
-author: Paulina Salinas Ruiz
-created: 2024-04-10
-modified: 2025-01-08
-review_period: 3 years
----
-
 **Purpose:**
-
-
 
 Describe purpose of process here.
 
-
-
-| **Step** | **Major Activity** | **References, Forms and Details** |
-| -------- | ------------------ | --------------------------------- |
-| 1 | Right-click on the dashboard element that you want to customize and select 'Inspect'. | Important Note: Make sure to exit the dashboard editing menu. |
-|  |  |  |
-|  | This will open the Developer Tools pane, where you can see the HTML and CSS of the page. See [here](https://pacificsalmonfoundation-my.sharepoint.com/:u:/g/personal/psalinasruiz_psf_ca/EauCkbHGowhPo1-v6t5YUsoBFlms6KnnZxsVE-2dDjqAHg?e=q13ah0) for a breakdown of the Developer Tools Interface. |  |
-| 2 |  |  |
-| 3 |  |  |
-| 4 |  |  |
-
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 51%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Step</strong> </th>
+<th style="text-align: left;"><strong>Major Activity</strong> </th>
+<th style="text-align: left;"><strong>References, Forms and Details</strong> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1 </td>
+<td><p>Right-click on the dashboard element that you want to customize and select ‘Inspect’.</p>
+<p>This will open the Developer Tools pane, where you can see the HTML and CSS of the page. See <a href="https://pacificsalmonfoundation-my.sharepoint.com/:u:/g/personal/psalinasruiz_psf_ca/EauCkbHGowhPo1-v6t5YUsoBFlms6KnnZxsVE-2dDjqAHg?e=q13ah0">here</a> for a breakdown of the Developer Tools Interface.</p></td>
+<td>Important Note: Make sure to exit the dashboard editing menu.</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">3 </td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
