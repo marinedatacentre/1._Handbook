@@ -9,8 +9,9 @@ on:
 jobs:
   generate-md:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -21,13 +22,14 @@ jobs:
       - name: Install dependencies
         run: pip install pandas openpyxl
 
-      - name: Generate Markdown
+      - name: Generate Markdown from Excel
         run: python scripts/process_form_data.py
 
-      - name: Commit and push
+      - name: Commit and push generated Markdown
         run: |
-          git config user.name "Github-Action"
-          git config user.email "N/A"
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
           git add handbook.md/
-          git commit -m "📄 Auto-generated process markdown" || echo "No changes"
+          git status
+          git commit -m "📄 Auto-generated process markdown" || echo "✅ No new changes to commit"
           git push
