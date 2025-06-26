@@ -4,9 +4,9 @@
 
 Top of Form
 
-![](C:\Users\tchernen\Documents\projects\markdown-output\110_GeoNetwork\330-F05 ISO Dates - NOAA Environmental Data Management Wiki_media/media/image1.wmf)
+![](330-F05 ISO Dates - NOAA Environmental Data Management Wiki_media/media/image1.wmf)
 
-![](C:\Users\tchernen\Documents\projects\markdown-output\110_GeoNetwork\330-F05 ISO Dates - NOAA Environmental Data Management Wiki_media/media/image2.wmf)
+![](330-F05 ISO Dates - NOAA Environmental Data Management Wiki_media/media/image2.wmf)
 
 # ISO Dates
 
