@@ -40,6 +40,10 @@ review_period: {review_period or '3 years'}
 ## Purpose
 {purpose}
 
+## Steps
+
+| Step | Major Activity | References, Forms and Details |
+|------|----------------|-------------------------------|
 """
 
     for i in range(1, 21):
@@ -47,12 +51,6 @@ review_period: {review_period or '3 years'}
         detail = str(row.get(f"Step {i}: References, Forms and Details", "")).strip()
 
         if major and major.lower() != "nan":
-            md += f"### Step {i}: {major}\n"
-            md += f"- References, Forms and Details: {detail or 'N/A'}\n\n"
-
-    # === SAVE ===
-    folder_path.mkdir(parents=True, exist_ok=True)
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write(md)
-
-    print(f"✅ Wrote: {file_path}")
+            clean_major = major.replace("|", "\\|")  # Escape pipes
+            clean_detail = (detail or "N/A").replace("|", "\\|")
+            md += f"| {i} | {clean_major} | {clean_detail} |\n"
