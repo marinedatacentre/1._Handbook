@@ -27,11 +27,13 @@ jobs:
       - name: Generate Markdown from Excel
         run: python scripts/process_form_data.py
 
+      - name: Authenticate Git
+        run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
       - name: Commit and push generated Markdown
         run: |
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
           git add handbook.md/**/*
-          git status
           git commit -m "📄 Auto-generated process markdown" || echo "✅ No new changes to commit"
           git push
