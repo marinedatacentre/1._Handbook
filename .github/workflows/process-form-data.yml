@@ -32,8 +32,10 @@ jobs:
 
       - name: Commit and push generated Markdown
         run: |
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add handbook.md/**/*
+          git status
           git commit -m "📄 Auto-generated process markdown" || echo "✅ No new changes to commit"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
