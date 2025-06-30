@@ -22,13 +22,13 @@ jobs:
       - name: Install dependencies
         run: pip install pandas openpyxl
 
-      - name: Run script
+      - name: Generate Markdown from Excel
         run: python scripts/process_form_data.py
 
-      - name: Commit and push changes
+      - name: Commit and push generated Markdown
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add .
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add handbook.md
           git diff --cached --quiet || git commit -m "📄 Auto-generated process markdown"
           git push
