@@ -41,7 +41,7 @@ for index, row in df.iterrows():
     safe_number = process_number.replace("/", "-").replace(" ", "_")
     filename = f"{safe_number}_{safe_title}.md"
 
-    folder_path = OUTPUT_DIR / folder_type / section_category
+    folder_path = OUTPUT_DIR / section_category
     file_path = folder_path / filename
 
     if file_path.exists():
