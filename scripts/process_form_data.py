@@ -12,20 +12,33 @@ df.columns = [col.replace("\xa0", " ").strip() for col in df.columns]  # Normali
 for index, row in df.iterrows():
     folder_type = str(row.get("Pick a Folder", "")).strip()
 
-    # Determine subfolder based on folder type
+        # === REPO BASE DIRECTORY (adjust this when adding more repos) ===
+    # For now, everything goes into 'handbook.md'
+    # In the future, use this logic to switch repos:
     if folder_type == "1. Handbook":
-        subfolder = str(row.get("Section/Category", "")).strip()
+        OUTPUT_DIR = Path("handbook.md")
+        section_category = str(row.get("Section/Category", "")).strip()
+    
     elif folder_type == "2. Handbook Companion":
-        subfolder = str(row.get("Section/Category1", "")).strip()
+        OUTPUT_DIR = Path("companion.md")  # 🔧 Replace when that repo exists
+        section_category = str(row.get("Section/Category1", "")).strip()
+    
     elif folder_type == "3. Project Specific Processes":
-        subfolder = str(row.get("Section/Category2", "")).strip()
+        OUTPUT_DIR = Path("projects.md")  # 🔧 Replace when that repo exists
+        section_category = str(row.get("Section/Category2", "")).strip()
+    
     elif folder_type == "4. Data Repository":
-        subfolder = str(row.get("Section/Category3", "")).strip()
+        OUTPUT_DIR = Path("data-repo.md")  # 🔧 Replace when that repo exists
+        section_category = str(row.get("Section/Category3", "")).strip()
+    
     else:
-        subfolder = "Uncategorized"
-
-    # Clean folder names
-    folder_path = OUTPUT_DIR / folder_type.replace("/", "-").strip() / subfolder.replace("/", "-").strip()
+        OUTPUT_DIR = Path("handbook.md")  # Default fallback
+        section_category = "Uncategorized"
+    
+    # === CLEAN FILE PATH ===
+    folder_path = OUTPUT_DIR / folder_type / section_category
+    filename = f"{process_number} - {process_title.replace('/', '-').strip()}.md"
+    file_path = folder_path / filename
 
     # Build file name: processNumber_processTitle.md
     process_number = str(row.get("Process Number", "")).strip()
