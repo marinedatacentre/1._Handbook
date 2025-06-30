@@ -1,54 +1,49 @@
-import os
 import pandas as pd
 from pathlib import Path
 
 # === CONFIG ===
-EXCEL_PATH = "data/Template for Processes.xlsx"
+EXCEL_PATH = Path("data/Template for Processes.xlsx")
+# Point at the repo root, not a subfolder
 OUTPUT_DIR = Path(".")
 
-# === LOAD DATA ===
+# === LOAD & NORMALIZE ===
 df = pd.read_excel(EXCEL_PATH)
+df.columns = [c.replace("\xa0", " ").strip() for c in df.columns]
 
-# Normalize column headers
-df.columns = [col.replace("\xa0", " ").strip() for col in df.columns]
+for idx, row in df.iterrows():
+    # Read your key fields
+    folder_type     = row.get("Pick a Folder", "").strip()
+    section1        = row.get("Section/Category", "").strip()
+    process_title   = row.get("Process Title", "").strip()
+    process_number  = row.get("Process Number", "").strip()
+    created_by      = row.get("Created by", "").strip()
+    review_period   = row.get("Review Period", "").strip()
+    purpose         = row.get("Purpose", "").strip()
 
-for index, row in df.iterrows():
-    folder_type = str(row.get("Pick a Folder", "")).strip()
-    section1 = str(row.get("Section/Category", "")).strip()
-    section2 = str(row.get("Section/Category1", "")).strip()
-    section3 = str(row.get("Section/Category2", "")).strip()
-    section4 = str(row.get("Section/Category3", "")).strip()
-    process_title = str(row.get("Process Title", "")).strip()
-    process_number = str(row.get("Process Number", "")).strip()
-    created_by = str(row.get("Created by", "")).strip()
-    review_period = str(row.get("Review Period", "")).strip()
-    purpose = str(row.get("Purpose", "")).strip()
+    # Only use the Section/Category folder
+    section_folder = section1 or "Uncategorized"
 
-    # === Determine subfolder ===
-    if folder_type == "1. Handbook":
-        section_category = section1
-    elif folder_type == "2. Handbook Companion":
-        section_category = section2  # 🔒 future expansion
-    elif folder_type == "3. Project Specific Processes":
-        section_category = section3  # 🔒 future expansion
-    elif folder_type == "4. Data Repository":
-        section_category = section4  # 🔒 future expansion
-    else:
-        section_category = "Uncategorized"
+    # Build the filename
+    safe_number = process_number.replace(" ", "_").replace("/", "-")
+    safe_title  = process_title.replace(" ", "_").replace("/", "-")
+    filename    = f"{safe_number}_{safe_title}.md"
 
-    # === Construct folder and filename ===
-    safe_title = process_title.replace("/", "-").replace(" ", "_")
-    safe_number = process_number.replace("/", "-").replace(" ", "_")
-    filename = f"{safe_number}_{safe_title}.md"
+    # THIS IS THE CRITICAL LINE:
+    folder_path = OUTPUT_DIR / section_folder
+    file_path   = folder_path / filename
 
-    folder_path = OUTPUT_DIR / section_category
-    file_path = folder_path / filename
-    folder_path.mkdir(parents=True, exist_ok=True)
+    # Debug logging
+    print(f"→ Writing to: {file_path}")
 
+    # Skip if already exists
     if file_path.exists():
+        print(f"  • Skipped (already exists)")
         continue
 
-    # === Build Markdown ===
+    # Create folder if needed
+    folder_path.mkdir(parents=True, exist_ok=True)
+
+    # Build your Markdown
     md = f"""---
 title: {process_title}
 author: {created_by}
@@ -64,19 +59,12 @@ review_period: {review_period or '3 years'}
 | Step | Major Activity | References, Forms and Details |
 |------|----------------|-------------------------------|
 """
-
     for i in range(1, 21):
-        major = str(row.get(f"Step {i}: Major Activity", "")).strip()
-        detail = str(row.get(f"Step {i}: References, Forms and Details", "")).strip()
+        major = row.get(f"Step {i}: Major Activity", "")
+        detail = row.get(f"Step {i}: References, Forms and Details", "")
+        if isinstance(major, str) and major.strip():
+            md += f"| {i} | {major.strip()} | {str(detail).strip() or 'N/A'} |\n"
 
-        if major and major.lower() != "nan":
-            clean_major = major.replace("|", "\\|")
-            clean_detail = (detail or "N/A").replace("|", "\\|")
-            md += f"| {i} | {clean_major} | {clean_detail} |\n"
-
-    # === Save to file ===
-    folder_path.mkdir(parents=True, exist_ok=True)
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write(md)
-
-    print(f"✅ Wrote: {file_path}")
+    # Write out the file
+    file_path.write_text(md, encoding="utf-8")
+    print(f"✅ Created: {file_path}")
