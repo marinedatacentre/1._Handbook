@@ -4,7 +4,7 @@ from pathlib import Path
 
 # === CONFIG ===
 EXCEL_PATH = "data/Template for Processes.xlsx"
-OUTPUT_DIR = Path("handbook.md")
+OUTPUT_DIR = Path(".")
 
 # === LOAD DATA ===
 df = pd.read_excel(EXCEL_PATH)
