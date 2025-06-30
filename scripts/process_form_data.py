@@ -29,7 +29,7 @@ for idx, row in df.iterrows():
     filename    = f"{safe_number}_{safe_title}.md"
 
     # THIS IS THE CRITICAL LINE:
-    folder_path = Path(section_category)  # NOT OUTPUT_DIR / section_category
+    folder_path = Path(section_folder)  # NOT OUTPUT_DIR / section_category
     file_path   = folder_path / filename
 
     # Debug logging
