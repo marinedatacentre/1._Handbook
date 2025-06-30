@@ -36,9 +36,9 @@ for idx, row in df.iterrows():
     print(f"→ Writing to: {file_path}")
 
     # Skip if already exists
-    if file_path.exists():
-        print(f"  • Skipped (already exists)")
-        continue
+    # if file_path.exists():
+    #     print(f"  • Skipped (already exists)")
+    #     continue
 
     # Create folder if needed
     folder_path.mkdir(parents=True, exist_ok=True)
