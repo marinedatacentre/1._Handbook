@@ -29,6 +29,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add handbook.md
+          git add .
           git diff --cached --quiet || git commit -m "📄 Auto-generated process markdown"
           git push
