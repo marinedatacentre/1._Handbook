@@ -35,7 +35,7 @@ for idx, row in df.iterrows():
     # Debug logging
     print(f"→ Writing to: {file_path}")
 
-    Skip if already exists
+    # Skip if already exists
     if file_path.exists():
         print(f"  • Skipped (already exists)")
         continue
