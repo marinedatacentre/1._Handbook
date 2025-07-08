@@ -1,3 +1,12 @@
+---
+process_number: 110-01
+title: Metadata_GeneratingMetadataRecordsJNAP_240410
+author: Paulina Salinas Ruiz
+created: 2024-04-10
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 To use jNAP (java metadata authoring tool for North American Profile responses) for creation of a typical iso-19115 metadata record, and for inclusion into GeoNetwork. It is assumed that jNAP has been installed on the computer ([110-04](https://pacificsalmonfoundation-my.sharepoint.com/:w:/g/personal/psalinasruiz_psf_ca/EWbWp7hx93FNnGXgBlV46OQBhwrUztMWwM6eVcd1n0wAWw?e=BgpgNv)). jNAP is written in java, and should be operating system independent. It is known to work on Windows, Mac and Linux computers.

@@ -1,3 +1,12 @@
+---
+process_number: 110-05
+title: Metadata_GeneratingMetadataRecordsGeoNetwork_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 The goal of this process is to provide a guide to standardize metadata records in the SGDC. The desired thumbnail and any desired data files should already be available.  If a link to a GeoServer WMS map is desired, this should also be in place. 

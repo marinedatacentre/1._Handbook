@@ -1,3 +1,12 @@
+---
+process_number: 150-F10
+title: CSS_SupersetSelectorsCheatSheet
+author: Natalia Garcia-Arias
+created: 2024-07-15
+modified: 2024-12-17
+review_period: 3 years
+---
+
 # 
 
 **Setting CSS Variables for Dynamic Styling.**

@@ -1,3 +1,12 @@
+---
+process_number: 130-33
+title: ArcPro_Georeferencing_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 Scanned maps and historical data usually do not contain spatial reference information. In these cases, we need to use accurate location data to align or georeference our raster data to a map coordinate system. A map coordinate system is defined using a map projection-a method by which the curved surface of the earth is portrayed on a flat surface.

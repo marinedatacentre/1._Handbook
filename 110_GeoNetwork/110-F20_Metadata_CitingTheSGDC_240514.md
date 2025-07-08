@@ -1,3 +1,12 @@
+---
+process_number: 110-F20
+title: Metadata_CitingTheSGDC_240514
+author: Paulina Salinas Ruiz
+created: 2024-05-14
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **<u>Citing The Strait Of Georgia Data Centre</u>**
 
 Each metadata record should include the following liability release information:

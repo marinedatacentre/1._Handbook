@@ -1,3 +1,12 @@
+---
+process_number: 100-F40
+title: GISSoftware_250130
+author: Paulina Salinas Ruiz
+created: 2025-01-30
+modified: 2025-01-30
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes the basic functionality of GIS software and how it fits within the Data Centre’s processes. GIS (Geographic Information System) software is used for capturing, managing, analyzing, and visualizing spatial data. It allows users to create, edit, and share geospatial information, supporting decision-making in various domains such as environmental management, urban planning, and conservation.

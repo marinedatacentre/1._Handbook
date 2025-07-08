@@ -1,3 +1,12 @@
+---
+process_number: 110-04
+title: Metadata_InstallingjNAP_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes one way to create a metadata record to be later stored on the GeoNetwork server, using the java application jNAP. Creating metadata outside GeoNetwork is useful if many metadata records of a somewhat similar type or series are to be created, because all such records with their associated data files, links and thumbnails can be loaded in one later step.

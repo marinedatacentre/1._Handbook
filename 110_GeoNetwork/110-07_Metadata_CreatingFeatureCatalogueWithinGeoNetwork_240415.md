@@ -1,3 +1,12 @@
+---
+process_number: 110-07
+title: Metadata_CreatingFeatureCatalogueWithinGeoNetwork_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes how to create a feature catalogue metadata record within the GeoNetwork server. Any desired GeoNetwork metadata records for the dataset associated with the feature catalogue should already be available. 

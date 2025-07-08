@@ -1,3 +1,12 @@
+---
+process_number: 130-61
+title: QGIS_PerformingDigitization_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document is meant to outline the procedure for creating or modifying a layer in QGIS though the process of digitization. Digitization in this context refers to the usage of a GIS to create new point, line, or polygon features meant to serve as a representation of some real-world geographic feature.

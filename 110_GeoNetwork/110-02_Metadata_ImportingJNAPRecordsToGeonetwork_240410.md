@@ -1,3 +1,12 @@
+---
+process_number: 110-02
+title: Metadata_ImportingJNAPRecordsToGeonetwork_240410
+author: Paulina Salinas Ruiz
+created: 2024-04-10
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes the process of uploading a metadata record created in jNAP to GeoNetwork in the Strait of Georgia Data Centre’s interface. This process is a general process that will likely NOT apply to every single record contained within the SGDC. If in doubt, ask a SGDC elder (Ben + Terry) for advice.

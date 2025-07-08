@@ -1,3 +1,12 @@
+---
+process_number: 130-01
+title: AGO_AddingSpreadsheetDataAsHostedFeatureLayer_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-04-16
+review_period: 3 years
+---
+
 **Purpose:**
 
 To allow for the addition of spatial data (i.e. includes latitude and longitude fields) available through a spreadsheet to ArcGIS Online, in order for the use of the data in interactive maps.

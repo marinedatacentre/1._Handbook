@@ -1,3 +1,12 @@
+---
+process_number: 160-01
+title: Metadata_GeneratingMetadataRecordsJNAP_240417
+author: Paulina Salinas Ruiz
+created: 2024-04-10
+modified: 2024-04-16
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document serves as a guide to creating metadata records using jNAP. This approach is useful when creating one or a few records at a time, as it has a much more user-friendly interface than other metadata generator software.

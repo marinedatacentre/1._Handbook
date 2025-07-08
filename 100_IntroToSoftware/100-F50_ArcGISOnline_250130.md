@@ -1,3 +1,12 @@
+---
+process_number: 100-F50
+title: ArcGISOnline_250130
+author: Paulina Salinas Ruiz
+created: 2025-01-30
+modified: 2025-01-30
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes the basic functionality of ArcGIS Online and how it fits within the Data Centre’s processes. ArcGIS Online is Esri’s cloud-based GIS platform that allows users to create, analyze, and share spatial data through interactive maps, dashboards, and applications. It provides an accessible and collaborative environment for managing geospatial information without the need for local software installation.

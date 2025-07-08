@@ -1,3 +1,12 @@
+---
+process_number: 140-01
+title: FME_DynamicallyRead&WriteADataset_240416
+author: Paulina Salinas Ruiz
+created: 2024-04-16
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 This document describes how to read a generic dataset and write it out without prior knowledge of the schema. In particular, an example situation where esri rest layer services are read from a spreadhseet list and out put to PostgreSQL database tables is documented in this process.

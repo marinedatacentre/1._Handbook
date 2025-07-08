@@ -1,3 +1,12 @@
+---
+process_number: 110-08
+title: GeoNetwork_Access+Installation_250204
+author: Paulina Salinas Ruiz
+created: 2025-02-04
+modified: 2025-02-04
+review_period: 3 years
+---
+
 > **Purpose:  **
 > This document defines the standardized process for accessing and installing GeoNetwork in compliance with ISO 9000 quality management principles, ensuring consistency, efficiency, and traceability.
 

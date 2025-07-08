@@ -1,3 +1,12 @@
+---
+process_number: 130-80
+title: S123_CreateSurveyForPublicUse_240415
+author: Paulina Salinas Ruiz
+created: 2024-04-15
+modified: 2024-11-26
+review_period: 3 years
+---
+
 **Purpose:**
 
 To allow for the creation of an ArcGIS Survey123 Survey that can be used by the public to collect field data.

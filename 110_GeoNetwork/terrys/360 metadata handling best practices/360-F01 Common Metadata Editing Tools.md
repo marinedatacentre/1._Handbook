@@ -9,38 +9,20 @@ review_period: 3 years
 
 **Metadata Editing Tools**
 
-
-
 ***Commonly used commercial metadata editing tools include:***
 
+1.  ESRI ArcGIS Desktop (<u>http://www.esri.com/</u>)
 
+2.  Intergraph GeoMedia (<u>http://www.intergraph.com/</u>)
 
-1.  ESRI ArcGIS Desktop ([http://www.esri.com/]{.underline})
-
-
-
-2.  Intergraph GeoMedia ([http://www.intergraph.com/]{.underline})
-
-
-
-3.  MapInfo Manager ([http://www.pbinsight.com/]{.underline})
-
-
+3.  MapInfo Manager (<u>http://www.pbinsight.com/</u>)
 
 ***Commonly used Open Source / Freeware metadata editing tools include:***
 
+1.  CatMDEdit (<u>http://catmdedit.sourceforge.net/</u>)
 
-
-1.  CatMDEdit ([http://catmdedit.sourceforge.net/]{.underline})
-
-
-
-2.  GeoNetwork opensource ([http://geonetwork-opensource.org/]{.underline})
-
-
+2.  GeoNetwork opensource (<u>http://geonetwork-opensource.org/</u>)
 
 3.  jNAP (Java metadata writer for NAP format)
 
-
-
-4.  M³Cat ([http://www.intelec.ca/]{.underline})
+4.  M³Cat (<u>http://www.intelec.ca/</u>)
