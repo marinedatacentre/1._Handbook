@@ -1,25 +1,32 @@
 name: Initialize Docs Directory
 
-# Triggered manually the first time (via the “Run workflow” button)
+# Manually trigger this one-time setup
 on:
   workflow_dispatch:
 
 jobs:
   init-docs:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Create docs folder & initial index
-        run: |
-          mkdir -p docs
-          echo "# Process Directory" > docs/index.md
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install python-frontmatter
+
+      - name: Generate initial directory index
+        run: python scripts/generate_index.py
 
       - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add docs/index.md
-          git commit -m "📂 Initialize process directory"
+          git diff --cached --quiet || git commit -m "📂 Initialize process directory"
           git push
