@@ -3,7 +3,7 @@ name: Process Form Data
 on:
   push:
     paths:
-      - 'data/Template for Processes.xlsx'
+      - 'data/Template for Processes.json'
       - 'scripts/process_form_data.py'
 
 jobs:
@@ -19,10 +19,12 @@ jobs:
         with:
           python-version: '3.10'
 
+      # (You can drop pandas/openpyxl since the JSON-only script doesn’t need them,
+      #  but leaving them installed is harmless.)
       - name: Install dependencies
         run: pip install pandas openpyxl
 
-      - name: Generate Markdown from Excel
+      - name: Generate Markdown from JSON
         run: python scripts/process_form_data.py
 
       - name: Commit and push generated Markdown
