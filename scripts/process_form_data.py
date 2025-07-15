@@ -23,11 +23,16 @@ def get_value(key: str) -> str:
 # === SECTION FOLDER ===
 # Determine subfolder from the Section/Category1 field
 def determine_section() -> str:
+    """Determine subfolder name based on known Section/Category QIDs for each repo branch."""
     keys = [
-        "r193faaedd19c49669e0600e0d11edfca",
-        "r1198559f25ba43629596c31ea3496e27",
-        "r37c0831ebc6748c688ffad033a5b12d8",
-        "r3a4399885e004123ad9c270fa3509b3a",
+        # 1. Handbook branch
+        "r193faaedd19c49669e0600e0d11edfca",  # 120_LinuxDaemons
+        # 2. Handbook Companion branch
+        "rde080b09b05a47deb4c1111ff7ffc068",  # 130_GeospatialTechniques
+        # 3. Project Specific Processes branch
+        "r3a4399885e004123ad9c270fa3509b3a",  # 110_RAMS
+        # 4. Data Repository branch
+        "r1198559f25ba43629596c31ea3496e27",  # 600_Tabular_Data
     ]
     for qid in keys:
         sec = get_value(qid)
@@ -49,17 +54,32 @@ meta = {
 }
 
 # === STEP QID PAIRS ===
-STEP_QIDS = [
-    ("r97dc9b3936644c09a527fade2a8c2ced", "red79e9ae2dd9425094c408007e8b418f"),
-    ("r7550fae0cae6497b9f5dd065a99619f1", "r2429caa9d171400e9402ac4a1f3711b8"),
-    ("r5d174ef37c3748f2bb6bdc7b7e516320", "r46109de2e30f43bd9de65e780a6a1fb0"),
-    ("r4d3e2edb08e641989b75f707b2fe6309", "r717d8c1016494e5f8c2ab2f928a241f1"),
-    ("re8ef70bea24d437c8efb8585bff53103", "rb72f6c9b3e4341fdab95ce6b2e13a0a3"),
-    ("r64df0d8c46eb4827b9a3e51185ba617f", "ra5fdba2bb0124de5bb507e2edd242c94"),
-    ("rb8d21bdbc1d34bac9e332dcd60dc496d", "rea07d74a41e24afe8c01a29aeeae09c7"),
-    ("rb97c2fe3e3b94c6fad7c7c4269aeadb9", "r4c3eb873609241f48c17ee59e463a66e"),
-    ("r324e05d543d6479090b5674b19d1ccff", "r2946ad67113f46e581c4943371f83e52"),
-    ("r149b262948be4658ae6851737328b25e", "rfa6ab87b34d9411eb257779d011f3e27"),
+# Dynamically detect all step QIDs (major/detail) beyond core metadata
+import re
+core_qids = {
+    # Metadata and section keys
+    "r4a93806b735947948cb4f64ac6b88d1d",
+    "r193faaedd19c49669e0600e0d11edfca",
+    "r1198559f25ba43629596c31ea3496e27",
+    "r37c0831ebc6748c688ffad033a5b12d8",
+    "r3a4399885e004123ad9c270fa3509b3a",
+    # Frontmatter keys
+    "r090df130b6a14e4da6842248a6fd9292",
+    "rb161d63d7baa4ffb9f61ac63846ca8c8",
+    "r5bc371d4242c4f09b7b7980d18211809",
+    "r66c909f82883482fa07d3462e89e01e1",
+    "rb84d93fdf65d4fa89c1dc0796adc1607",
+    "rba00b055bbf9454f83bec1ec4f37c0c8",
+    "rc94139595a2c485c9a5cde963d202637",
+    # System keys
+    "submitDate",
+    "responder"
+}
+# Collect step QIDs preserving original form order
+step_qids = [
+    q for q in row.keys()
+    if re.fullmatch(r"r[0-9a-f]{32}", q)
+    and q not in core_qids
 ]
 
 # === OUTPUT PATH ===
