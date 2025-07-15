@@ -75,12 +75,14 @@ core_qids = {
     "submitDate",
     "responder"
 }
-# Collect step QIDs preserving original form order
-step_qids = [
+# Collect all potential step QIDs preserving original form order
+all_step_qids = [
     q for q in row.keys()
     if re.fullmatch(r"r[0-9a-f]{32}", q)
     and q not in core_qids
 ]
+# Filter only those with non-empty answers, so we ignore unanswered steps
+step_qids = [q for q in all_step_qids if get_value(q)]
 
 # === OUTPUT PATH ===
 # Create section folder (if missing) under repo root
