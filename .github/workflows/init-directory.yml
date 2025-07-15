@@ -1,0 +1,25 @@
+name: Initialize Docs Directory
+
+# Triggered manually the first time (via the “Run workflow” button)
+on:
+  workflow_dispatch:
+
+jobs:
+  init-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create docs folder & initial index
+        run: |
+          mkdir -p docs
+          echo "# Process Directory" > docs/index.md
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add docs/index.md
+          git commit -m "📂 Initialize process directory"
+          git push
