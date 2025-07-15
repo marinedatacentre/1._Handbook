@@ -113,13 +113,15 @@ lines += [
     '| Step | Major Activity | References, Forms and Details |',
     '|------|----------------|-------------------------------|',
 ]
-# Populate steps table
-for idx, (maj_q, det_q) in enumerate(STEP_QIDS, start=1):
+# Populate steps table from dynamic step_qids
+for i in range(0, len(step_qids), 2):
+    step_num = i // 2 + 1
+    maj_q = step_qids[i]
+    det_q = step_qids[i+1] if i+1 < len(step_qids) else None
     maj = get_value(maj_q)
-    if not maj:
-        continue
-    det = get_value(det_q) or 'N/A'
-    lines.append(f"| {idx} | {maj} | {det} |")
+    det = get_value(det_q) if det_q else ''
+    if maj:
+        lines.append(f"| {step_num} | {maj} | {det or 'N/A'} |")
 
 # === WRITE FILE ===
 out_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
