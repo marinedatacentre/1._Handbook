@@ -24,7 +24,7 @@ jobs:
         run: pip install --upgrade pip
 
       - name: Generate Markdown & download image
-        run: python scripts/process_media_form_data.py
+        run: python scripts/process_media_data.py
 
       - name: Commit and push generated files
         run: |
