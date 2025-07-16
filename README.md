@@ -10,7 +10,7 @@ This handbook is intended to support onboarding, foster consistency, and make it
 
 ## Contents of this Repository
 
-This repository is formatted according to ISO 9000 standards. Each folder documents a set of processes related to the different software tools and systems used in the Data Centre.
+This repository is formatted according to ISO 9000 standards. Each folder documents a set of processes related to the different software tools and systems used in the Data Centre.  
 If you know what you are looking for, use the Search bar above (the one that says 'Go to file') to find specific processes.
 
 | Folder | Description |
