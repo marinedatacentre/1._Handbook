@@ -9,16 +9,19 @@ It serves as a practical guide for new interns and team members, offering an ove
 This handbook is intended to support onboarding, foster consistency, and make it easier for contributors to navigate and contribute to our work.
 
 ## Contents of this Repository
-This repository is formatted in the ISO 9000 format. Each folder contains a set of processes relating to the different software used in the Data Centre: 
+
+This repository is formatted according to ISO 9000 standards. Each folder documents a set of processes related to the different software tools and systems used in the Data Centre:
+
 | Folder                    | Description                                                                 |
 |---------------------------|-----------------------------------------------------------------------------|
-| `Intro to Software`       | Introduction to the different software in the context of the Data Centre    |
-| `GeoNetowrk`              | Processes for working with GeoNetwork, heavily focused on metadata records  |
-| `GeoServer`               | Processes for performing basic tasks in GeoServer                           |
-| `Geospatial Techniques`   | Steps for adding and managing metadata records in GeoNetwork                |
-| `FME`                     | Processes offering basic information on the use of FME Flow and FME Form    |
-| `Superset`                | Standards and practices for formatting dashboards using Superset            |
-| `Data Sharing Agreements` | Data Sharing agreements and templates used by the Data Centre               |
+| `Intro to Software`       | Overview of the core software platforms used in the Data Centre, including context and roles |
+| `GeoNetwork`              | Processes for managing metadata records and administering the GeoNetwork platform |
+| `GeoServer`               | Guidance for publishing, styling, and managing spatial data services using GeoServer |
+| `Geospatial Techniques`   | Documentation of spatial workflows, data preparation steps, and GIS methods used across tools |
+| `FME`                     | Instructions for building and managing automated workflows using FME Flow and FME Form |
+| `Superset`                | Standards and procedures for designing, updating, and maintaining dashboards in Superset |
+| `Data Sharing Agreements` | Templates and processes for establishing and managing data sharing agreements with partners |
+
 
 ---
 
