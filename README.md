@@ -10,16 +10,15 @@ This handbook is intended to support onboarding, foster consistency, and make it
 
 ## Contents of this Repository
 This repository is formatted in the ISO 9000 format. Each folder contains a set of processes relating to the different software used in the Data Centre: 
-| Folder         | Description                                                                 |
-|----------------|-----------------------------------------------------------------------------|
-| `arcgis`       | Processes related to creating, editing, and publishing content using ArcGIS |
-| `experience`   | Guidance for building interfaces in ArcGIS Experience Builder               |
-| `dashboards`   | Instructions for managing ArcGIS Dashboards                                 |
-| `geonetwork`   | Steps for adding and managing metadata records in GeoNetwork                |
-| `web-hosting`  | Processes for publishing static web content through PSF's web servers       |
-| `data-formats` | Standards and practices for formatting datasets for use in the Data Centre  |
-| `graphics`     | Guidance for visual design, icons, and branded assets                       |
-| `templates`    | Pre-formatted documents and reference materials for consistent documentation|
+| Folder                    | Description                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| `Intro to Software`       | Introduction to the different software in the context of the Data Centre    |
+| `GeoNetowrk`              | Processes for working with GeoNetwork, heavily focused on metadata records  |
+| `GeoServer`               | Processes for performing basic tasks in GeoServer                           |
+| `Geospatial Techniques`   | Steps for adding and managing metadata records in GeoNetwork                |
+| `FME`                     | Processes offering basic information on the use of FME Flow and FME Form    |
+| `Superset`                | Standards and practices for formatting dashboards using Superset            |
+| `Data Sharing Agreements` | Data Sharing agreements and templates used by the Data Centre               |
 
 ---
 
