@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'data/Template_for_Media_Processes.json'
-      - 'scripts/process_media_form_data.py'
+      - 'scripts/process_media_data.py'
 
 jobs:
   generate-md:
