@@ -9,5 +9,5 @@ review_period: Never
 "Text"
 
 ## Uploaded Photo
-![Photo](../../contents/data/media/100-F10_First_forms_test.jpg)
+![Photo](../../../contents/data/media/100-F10_First_forms_test.jpg)
 
