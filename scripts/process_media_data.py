@@ -69,21 +69,9 @@ img_ext = '.jpg'
 img_file = out_dir / f"{safe_num}_{safe_title}{img_ext}"
 
 # === WRITE IMAGE ===
-# Forms file-upload QID returns a JSON array with name/link/id
-# We'll fetch the link URL and embed it rather than base64-decoding
-import urllib.request
+# We’ll embed the external URL directly—no local download
 files = json.loads(get_value(PHOTO_QID) or '[]')
-if files:
-    file_info = files[0]
-    img_url = file_info.get('link')
-    # download the image
-    try:
-        data = urllib.request.urlopen(img_url).read()
-        img_file.write_bytes(data)
-    except Exception as e:
-        print(f"⚠️ Failed to download image: {e}")
-else:
-    img_url = None
+img_url = files[0].get('link') if files else None
 
 # === BUILD MARKDOWN ===
 lines = [
@@ -105,10 +93,9 @@ lines += [
     ''
 ]
 if img_url:
-    rel = img_file.name
     lines += [
         '## Uploaded Photo',
-        f"![Photo]({rel})",
+        f"![Photo]({img_url})",
         ''
     ]
 
