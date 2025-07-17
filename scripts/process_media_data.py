@@ -93,13 +93,15 @@ lines.extend([
     ''
 ])
 
-# Image embed
 if img_url:
+    # img_url now holds the local filename, not a URL
+    rel_path = Path('data/media') / section / f"{safe_num}_{safe_title}.jpg"
     lines.extend([
         '## Uploaded Photo',
-        f"![Photo]({img_url})",
+        f"![Photo]({rel_path.as_posix()})",
         ''
     ])
+
 
 # === WRITE FILE ===
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
