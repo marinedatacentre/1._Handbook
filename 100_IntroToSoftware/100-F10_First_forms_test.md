@@ -8,3 +8,6 @@ review_period: Never
 ## Information
 "Text"
 
+## Uploaded Photo
+![Photo](100-F10_First_forms_test.jpg)
+
