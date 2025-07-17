@@ -93,14 +93,15 @@ lines.extend([
     ''
 ])
 
-if img_url:
-    # img_url now holds the local filename, not a URL
-    rel_path = Path('data/media') / section / f"{safe_num}_{safe_title}.jpg"
+# since the photo and markdown share the same folder:
+img_filename = f"{safe_num}_{safe_title}.jpg"
+if img_filename and (out_dir / img_filename).exists():
     lines.extend([
         '## Uploaded Photo',
-        f"![Photo]({rel_path.as_posix()})",
+        f"![Photo]({img_filename})",
         ''
     ])
+
 
 
 # === WRITE FILE ===
