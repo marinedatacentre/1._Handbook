@@ -1,0 +1,10 @@
+---
+title: test title
+author: Tyson Chernen
+date: 7/21/2025 4:43:54 PM
+review_period: Never
+---
+
+## Information
+Somw more general text:<br/>\* first item<br/>\*second item
+
