@@ -20,6 +20,12 @@ def get_value(key: str) -> str:
         return ", ".join(map(str, v)).strip()
     return str(v or "").strip()
 
+# === ESCAPE Markdown helper ===
+_SPECIAL_MD_CHARS = set(r"\`*_{}[]()#+-.!|")
+def escape_md(text: str) -> str:
+    """Backslash-escape all Markdown-special characters in text."""
+    return "".join(f"\\{c}" if c in _SPECIAL_MD_CHARS else c for c in text)
+
 # === ROUTING ===
 def determine_section() -> str:
     keys = [
@@ -71,38 +77,61 @@ img_url = files[0].get('link') if files else None
 # === BUILD MARKDOWN ===
 lines = [
     '---',
-    f"title: {meta['title']}",
-    f"author: {meta['author']}",
+    f"title: {escape_md(meta['title'])}",
+    f"author: {escape_md(meta['author'])}",
 ]
 # Date normalization
 try:
     dt = datetime.fromisoformat(meta['date'])
     lines.append(f"date: {dt.isoformat()}")
 except Exception:
-    lines.append(f"date: {meta['date']}")
+    lines.append(f"date: {escape_md(meta['date'])}")
 # Review period
-lines.append(f"review_period: {meta['period']}")
+lines.append(f"review_period: {escape_md(meta['period'])}")
 # Close front-matter
 lines.append('---')
 
 # Body
-lines.extend([
-    '',
-    '## Information',
-    meta['info'] or 'N/A',
-    ''
-])
+lines.append('')
+lines.append('## Information')
 
-# since the photo and markdown share the same folder:
+# === RENDER INFO WITH OPTIONAL HEADER + BULLETS ===
+info_raw = meta['info'] or 'N/A'
+info_lines = info_raw.splitlines()
+# Detect header line (first line without '- ')
+header = None
+if info_lines and not info_lines[0].strip().startswith('- '):
+    header = info_lines[0].strip()
+# Extract bullet items
+bullet_items = [
+    line.strip()[2:].strip()
+    for line in info_lines
+    if line.strip().startswith('- ')
+]
+# Build HTML or plain text
+if bullet_items:
+    parts = []
+    if header:
+        parts.append(escape_md(header))
+    parts.append(
+        '<ul>' + ''.join(f"<li>{escape_md(item)}</li>" for item in bullet_items) + '</ul>'
+    )
+    lines.append(''.join(parts))
+else:
+    # plain text with line-breaks
+    escaped = escape_md(info_raw)
+    lines.append(escaped.replace("\n", "<br/>"))
+
+lines.append('')
+
+# Images
 img_filename = f"{safe_num}_{safe_title}.jpg"
 if img_filename and (out_dir / img_filename).exists():
-    lines.extend([
+    lines.extend([  
         '## Uploaded Photo',
         f"![Photo]({img_filename})",
         ''
     ])
-
-
 
 # === WRITE FILE ===
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
