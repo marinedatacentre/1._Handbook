@@ -19,6 +19,12 @@ def get_value(key: str) -> str:
         return ", ".join(map(str, val)).strip()
     return str(val or "").strip()
 
+# === ESCAPE Markdown helper ===
+_SPECIAL_MD_CHARS = set(r"\`*_{}[]()#+-.!|" )
+def escape_md(text: str) -> str:
+    """Backslash-escape all Markdown-special characters in text."""
+    return "".join(f"\\{c}" if c in _SPECIAL_MD_CHARS else c for c in text)
+
 # === SECTION FOLDER ===
 def determine_section() -> str:
     """Choose subfolder based on known Section/Category QIDs."""
@@ -55,29 +61,27 @@ meta = {
 }
 
 # === STATIC STEP QID PAIRS ===
-# Only steps 1–20 as defined by your form
 STEP_QIDS = [
-    ("r97dc9b3936644c09a527fade2a8c2ced", "red79e9ae2dd9425094c408007e8b418f"),  # 1
-    ("r7550fae0cae6497b9f5dd065a99619f1", "r2429caa9d171400e9402ac4a1f3711b8"),  # 2
-    ("r5d174ef37c3748f2bb6bdc7b7e516320", "r46109de2e30f43bd9de65e780a6a1fb0"),  # 3
-    ("r4d3e2edb08e641989b75f707b2fe6309", "r717d8c1016494e5f8c2ab2f928a241f1"),  # 4
-    ("re8ef70bea24d437c8efb8585bff53103", "rb72f6c9b3e4341fdab95ce6b2e13a0a3"),  # 5
-    ("r64df0d8c46eb4827b9a3e51185ba617f", "ra5fdba2bb0124de5bb507e2edd242c94"),  # 6
-    ("rb8d21bdbc1d34bac9e332dcd60dc496d", "rea07d74a41e24afe8c01a29aeeae09c7"),  # 7
-    ("rb97c2fe3e3b94c6fad7c7c4269aeadb9", "r4c3eb873609241f48c17ee59e463a66e"),  # 8
-    ("r324e05d543d6479090b5674b19d1ccff", "r2946ad67113f46e581c4943371f83e52"),  # 9
-    ("r149b262948be4658ae6851737328b25e", "rfa6ab87b34d9411eb257779d011f3e27"),  # 10
-    # Steps 11–20 from your completed Handbook JSON
-    ("rbcb27e2f85ef4905a15000ed2389ea97", "r8d0d96fdba1e4faf83f092f08c37b995"),  # 11
-    ("rd8c29def3e01409d9ab394e3f232c274", "r8398187ea9fd4bfeb4a6ac2459518f65"),  # 12
-    ("r3b6d9f6502784280aedcaf7f202f7a75", "r5ddc5eb6f6ca474c982abc63660be1a3"),  # 13
-    ("r08a60a449eac402f8dc5f8ac408bc0b5", "rb3fce645f38a4b209006d36ddd15d582"),  # 14
-    ("r7899342f8a0941f1b55835f070d29273", "rb9736b125f34478e9196b119ffda7274"),  # 15
-    ("re01d871bd367479f819b4c897abf797e", "r1939fc26b2d1470ebe629f4b0ab2d3d3"),  # 16
-    ("r6886b00db7a144b58da565f300f7cacc", "r0cf0cc3a14d94bce88e2af8dae9dd2ed"),  # 17
-    ("refb31de65f0246e48f3b064b51a39c07", "r7736477d61ef48529c33e46db64bdcdd"),  # 18
-    ("r4da3b9a5993a4592a7194f5c327395e2", "r8fe743f4e5334311ac416e2c3e35bce5"),  # 19
-    ("r1fb1b1026f2c4381a89ceb2358f1611b", "r279885961c404c889570650c6794dd8a"),  # 20
+    ("r97dc9b3936644c09a527fade2a8c2ced", "red79e9ae2dd9425094c408007e8b418f"),
+    ("r7550fae0cae6497b9f5dd065a99619f1", "r2429caa9d171400e9402ac4a1f3711b8"),
+    ("r5d174ef37c3748f2bb6bdc7b7e516320", "r46109de2e30f43bd9de65e780a6a1fb0"),
+    ("r4d3e2edb08e641989b75f707b2fe6309", "r717d8c1016494e5f8c2ab2f928a241f1"),
+    ("re8ef70bea24d437c8efb8585bff53103", "rb72f6c9b3e4341fdab95ce6b2e13a0a3"),
+    ("r64df0d8c46eb4827b9a3e51185ba617f", "ra5fdba2bb0124de5bb507e2edd242c94"),
+    ("rb8d21bdbc1d34bac9e332dcd60dc496d", "rea07d74a41e24afe8c01a29aeeae09c7"),
+    ("rb97c2fe3e3b94c6fad7c7c4269aeadb9", "r4c3eb873609241f48c17ee59e463a66e"),
+    ("r324e05d543d6479090b5674b19d1ccff", "r2946ad67113f46e581c4943371f83e52"),
+    ("r149b262948be4658ae6851737328b25e", "rfa6ab87b34d9411eb257779d011f3e27"),
+    ("rbcb27e2f85ef4905a15000ed2389ea97", "r8d0d96fdba1e4faf83f092f08c37b995"),
+    ("rd8c29def3e01409d9ab394e3f232c274", "r8398187ea9fd4bfeb4a6ac2459518f65"),
+    ("r3b6d9f6502784280aedcaf7f202f7a75", "r5ddc5eb6f6ca474c982abc63660be1a3"),
+    ("r08a60a449eac402f8dc5f8ac408bc0b5", "rb3fce645f38a4b209006d36ddd15d582"),
+    ("r7899342f8a0941f1b55835f070d29273", "rb9736b125f34478e9196b119ffda7274"),
+    ("re01d871bd367479f819b4c897abf797e", "r1939fc26b2d1470ebe629f4b0ab2d3d3"),
+    ("r6886b00db7a144b58da565f300f7cacc", "r0cf0cc3a14d94bce88e2af8dae9dd2ed"),
+    ("refb31de65f0246e48f3b064b51a39c07", "r7736477d61ef48529c33e46db64bdcdd"),
+    ("r4da3b9a5993a4592a7194f5c327395e2", "r8fe743f4e5334311ac416e2c3e35bce5"),
+    ("r1fb1b1026f2c4381a89ceb2358f1611b", "r279885961c404c889570650c6794dd8a"),
 ]
 
 # === OUTPUT PATH ===
@@ -89,21 +93,21 @@ out_file = out_dir / filename
 # === BUILD MARKDOWN ===
 lines = [
     '---',
-    f"title: {meta['title']}",
-    f"author: {meta['author']}",
+    f"title: {escape_md(meta['title'])}",
+    f"author: {escape_md(meta['author'])}",
 ]
 # normalize date
 try:
     dt = datetime.fromisoformat(meta['date'])
     lines.append(f"date: {dt.isoformat()}")
 except ValueError:
-    lines.append(f"date: {meta['date']}")
+    lines.append(f"date: {escape_md(meta['date'])}")
 lines += [
-    f"review_period: {meta['period']}",
+    f"review_period: {escape_md(meta['period'])}",
     '---',
     '',
     '## Purpose',
-    meta['purpose'] or 'N/A',
+    escape_md(meta['purpose'] or 'N/A'),
     '',
     '## Steps',
     '',
@@ -112,9 +116,11 @@ lines += [
 ]
 # enumerate static pairs to include steps up to 20
 for idx, (maj_q, det_q) in enumerate(STEP_QIDS, start=1):
-    maj = get_value(maj_q)
-    det = get_value(det_q) or 'N/A'
-    if maj:
+    maj_raw = get_value(maj_q)
+    if maj_raw:
+        det_raw = get_value(det_q)
+        maj = escape_md(maj_raw)
+        det = escape_md(det_raw) if det_raw else 'N/A'
         lines.append(f"| {idx} | {maj} | {det} |")
 
 # === WRITE FILE ===
