@@ -1,10 +1,15 @@
 ---
 title: test title
-author: me
-date: 7/20/2025 10:02:04 PM
+author: Tyson Chernen
+date: 7/21/2025 4:43:54 PM
 review_period: Never
 ---
 
 ## Information
-general text
+Somw more general text:
+* first item
+*second item
+
+## Uploaded Photo
+![Photo](101_test_title.jpg)
 
