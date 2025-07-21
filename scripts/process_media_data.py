@@ -13,13 +13,7 @@ if not JSON_PATH.exists():
 with JSON_PATH.open("r", encoding="utf-8") as f:
     row = json.load(f)
 
-# === ESCAPE HELPER ===
-# Backslash‑escape all Markdown‑special characters so they stay literal.
-_SPECIAL = set(r"\`*_{}[]()#+-.!|")
-def escape_md(text: str) -> str:
-    return "".join(f"\\{c}" if c in _SPECIAL else c for c in text)
-
-# === HELPER TO GET FORM VALUES ===
+# === HELPER ===
 def get_value(key: str) -> str:
     v = row.get(key, "")
     if isinstance(v, list):
@@ -51,7 +45,7 @@ REVIEW_QID  = "r66c909f82883482fa07d3462e89e01e1"  # Review Period
 INFO_QID    = "r97dc9b3936644c09a527fade2a8c2ced"  # Information textbox
 PHOTO_QID   = "r072985e75ce540dc8129db3d105d0737"  # File upload JSON array
 
-# === EXTRACT AND ESCAPE METADATA ===
+# === EXTRACT METADATA ===
 meta = {
     'title':  get_value(TITLE_QID),
     'number': get_value(NUMBER_QID),
@@ -60,10 +54,6 @@ meta = {
     'period': get_value(REVIEW_QID) or "3 years",
     'info':   get_value(INFO_QID)
 }
-
-# Escape any Markdown syntax in user inputs
-for k in ('title', 'author', 'period', 'info'):
-    meta[k] = escape_md(meta[k])
 
 # === PREPARE OUTPUT PATH ===
 out_dir = OUTPUT_ROOT / section
@@ -111,6 +101,8 @@ if img_filename and (out_dir / img_filename).exists():
         f"![Photo]({img_filename})",
         ''
     ])
+
+
 
 # === WRITE FILE ===
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
