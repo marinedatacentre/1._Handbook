@@ -6,7 +6,8 @@ from datetime import datetime
 # === CONFIGURATION ===
 JSON_PATH = Path("data/Template for Processes.json")  # raw JSON filepath
 
-# === LOAD JSON ===nif not JSON_PATH.exists():
+# === LOAD JSON ===
+if not JSON_PATH.exists():
     raise FileNotFoundError(f"JSON not found: {JSON_PATH}")
 with JSON_PATH.open("r", encoding="utf-8") as f:
     row = json.load(f)
