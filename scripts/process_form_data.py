@@ -61,7 +61,7 @@ meta = {
 STEP_QIDS = [
     ("r97dc9b3936644c09a527fade2a8c2ced", "red79e9ae2dd9425094c408007e8b418f"),
     ("r7550fae0cae6497b9f5dd065a99619f1", "r2429caa9d171400e9402ac4a1f3711b8"),
-    # ... (other 18 pairs unchanged)
+    # ... other pairs unchanged
 ]
 
 # === OUTPUT PATH ===
@@ -94,22 +94,37 @@ lines += [
     '|------|----------------|-------------------------------|',
 ]
 
-# === ENUMERATE STEPS WITH OPTIONAL BULLETS ===
+# === ENUMERATE STEPS WITH OPTIONAL HEADER + BULLETS ===
 for idx, (maj_q, det_q) in enumerate(STEP_QIDS, start=1):
     maj_raw = get_value(maj_q)
     if not maj_raw:
         continue
     det_raw = get_value(det_q)
 
-    # detect bullet lines
+    # split lines and identify header
     lines_raw = maj_raw.splitlines()
-    bullet_items = [line.strip()[2:].strip() for line in lines_raw if line.strip().startswith('- ')]
+    header = None
+    if lines_raw and not lines_raw[0].strip().startswith('- '):
+        header = lines_raw[0].strip()
+
+    # extract bullet items
+    bullet_items = [
+        line.strip()[2:].strip()
+        for line in lines_raw
+        if line.strip().startswith('- ')
+    ]
 
     if bullet_items:
-        # wrap bullet items in an HTML list
-        maj_html = '<ul>' + ''.join(f"<li>{escape_md(item)}</li>" for item in bullet_items) + '</ul>'
+        maj_parts = []
+        if header:
+            maj_parts.append(escape_md(header))
+        maj_parts.append(
+            '<ul>'
+            + ''.join(f"<li>{escape_md(item)}</li>" for item in bullet_items)
+            + '</ul>'
+        )
+        maj_html = ''.join(maj_parts)
     else:
-        # no bullets; render raw text
         maj_html = escape_md(maj_raw).replace("\n", "<br/>")
 
     det_html = escape_md(det_raw).replace("\n", "<br/>") if det_raw else 'N/A'
