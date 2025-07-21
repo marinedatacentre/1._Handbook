@@ -8,3 +8,6 @@ review_period: Never
 ## Information
 Somw more general text:<br/>\* first item<br/>\*second item
 
+## Uploaded Photo
+![Photo](101_test_title.jpg)
+
