@@ -13,6 +13,7 @@ with JSON_PATH.open("r", encoding="utf-8") as f:
     row = json.load(f)
 
 # === HELPER ===
+
 def get_value(key: str) -> str:
     val = row.get(key, "")
     if isinstance(val, list):
@@ -93,23 +94,26 @@ lines += [
     '|------|----------------|-------------------------------|',
 ]
 
-# === ENUMERATE STEPS WITH BULLETED LIST ===
+# === ENUMERATE STEPS WITH OPTIONAL BULLETS ===
 for idx, (maj_q, det_q) in enumerate(STEP_QIDS, start=1):
     maj_raw = get_value(maj_q)
-    if maj_raw:
-        det_raw = get_value(det_q)
-        # convert lines prefixed with '-' into list items
-        items = []
-        for line in maj_raw.splitlines():
-            stripped = line.strip()
-            if stripped.startswith('- '):
-                items.append(stripped[2:].strip())
-            elif stripped:
-                items.append(stripped)
-        # build HTML list
-        maj_html = "<ul>" + "".join(f"<li>{escape_md(item)}</li>" for item in items) + "</ul>"
-        det = escape_md(det_raw).replace("\n", "<br/>") if det_raw else 'N/A'
-        lines.append(f"| {idx} | {maj_html} | {det} |")
+    if not maj_raw:
+        continue
+    det_raw = get_value(det_q)
+
+    # detect bullet lines
+    lines_raw = maj_raw.splitlines()
+    bullet_items = [line.strip()[2:].strip() for line in lines_raw if line.strip().startswith('- ')]
+
+    if bullet_items:
+        # wrap bullet items in an HTML list
+        maj_html = '<ul>' + ''.join(f"<li>{escape_md(item)}</li>" for item in bullet_items) + '</ul>'
+    else:
+        # no bullets; render raw text
+        maj_html = escape_md(maj_raw).replace("\n", "<br/>")
+
+    det_html = escape_md(det_raw).replace("\n", "<br/>") if det_raw else 'N/A'
+    lines.append(f"| {idx} | {maj_html} | {det_html} |")
 
 # === WRITE FILE ===
 out_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
