@@ -13,6 +13,6 @@ To test
 | Step | Major Activity | References, Forms and Details |
 |------|----------------|-------------------------------|
 | 1 | Sub steps: 
-- Read everything
-- Understand everything
-- See if these work: ## __-- | details |
+\- Read everything
+\- Understand everything
+\- See if these work: \#\# \_\_\-\- | details |
