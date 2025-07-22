@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import json
+import requests                      # for downloading the image
 from pathlib import Path
 from datetime import datetime
 
 # === CONFIGURATION ===
-JSON_PATH   = Path("data/Template_for_Media_Processes.json")  # raw JSON filepath
+JSON_PATH   = Path("data/Template_for_Media_Processes.json")
 OUTPUT_ROOT = Path('.')
 
 # === LOAD JSON ===
@@ -23,7 +24,6 @@ def get_value(key: str) -> str:
 # === ESCAPE Markdown helper ===
 _SPECIAL_MD_CHARS = set(r"\`*_{}[]()#+-.!|")
 def escape_md(text: str) -> str:
-    """Backslash-escape all Markdown-special characters in text."""
     return "".join(f"\\{c}" if c in _SPECIAL_MD_CHARS else c for c in text)
 
 # === ROUTING ===
@@ -61,18 +61,38 @@ meta = {
     'info':   get_value(INFO_QID)
 }
 
-# === PREPARE OUTPUT PATH ===
-out_dir = OUTPUT_ROOT / section
+# === PREPARE OUTPUT PATHS ===
+out_dir   = OUTPUT_ROOT / section
+media_dir = out_dir / "media"
 out_dir.mkdir(parents=True, exist_ok=True)
+media_dir.mkdir(parents=True, exist_ok=True)
 
 safe_num   = meta['number'].replace(' ', '_').replace('/', '-')
 safe_title = meta['title'].replace(' ', '_').replace('/', '-')
-
 md_file    = out_dir / f"{safe_num}_{safe_title}.md"
 
-# === PARSE IMAGE URL ===
+# === PARSE IMAGE URL + ORIGINAL FILENAME ===
 files = json.loads(get_value(PHOTO_QID) or '[]')
-img_url = files[0].get('link') if files else None
+if files:
+    file_info   = files[0]
+    img_url     = file_info.get('link')
+    orig_name   = file_info.get('name', '')
+    ext         = Path(orig_name).suffix or ".jpg"
+    img_filename = f"{safe_num}_{safe_title}{ext}"
+else:
+    img_url     = None
+    img_filename = None
+
+# === DOWNLOAD IMAGE INTO media/ ===
+if img_url and img_filename:
+    dest = media_dir / img_filename
+    try:
+        resp = requests.get(img_url, timeout=10)
+        resp.raise_for_status()
+        with open(dest, 'wb') as f:
+            f.write(resp.content)
+    except Exception as e:
+        print(f"⚠️ Warning: failed to download image from {img_url}: {e}")
 
 # === BUILD MARKDOWN ===
 lines = [
@@ -80,35 +100,28 @@ lines = [
     f"title: {escape_md(meta['title'])}",
     f"author: {escape_md(meta['author'])}",
 ]
-# Date normalization
+# normalize date
 try:
     dt = datetime.fromisoformat(meta['date'])
     lines.append(f"date: {dt.isoformat()}")
 except Exception:
     lines.append(f"date: {escape_md(meta['date'])}")
-# Review period
 lines.append(f"review_period: {escape_md(meta['period'])}")
-# Close front-matter
 lines.append('---')
-
-# Body
 lines.append('')
 lines.append('## Information')
 
-# === RENDER INFO WITH OPTIONAL HEADER + BULLETS ===
-info_raw = meta['info'] or 'N/A'
+# render info with optional header + bullets
+info_raw   = meta['info'] or 'N/A'
 info_lines = info_raw.splitlines()
-# Detect header line (first line without '- ')
-header = None
+header     = None
 if info_lines and not info_lines[0].strip().startswith('- '):
     header = info_lines[0].strip()
-# Extract bullet items
 bullet_items = [
     line.strip()[2:].strip()
     for line in info_lines
     if line.strip().startswith('- ')
 ]
-# Build HTML or plain text
 if bullet_items:
     parts = []
     if header:
@@ -118,21 +131,18 @@ if bullet_items:
     )
     lines.append(''.join(parts))
 else:
-    # plain text with line-breaks
     escaped = escape_md(info_raw)
     lines.append(escaped.replace("\n", "<br/>"))
-
 lines.append('')
 
-# Images
-img_filename = f"{safe_num}_{safe_title}.jpg"
-if img_filename and (out_dir / img_filename).exists():
-    lines.extend([  
+# include the photo from media/
+if img_filename and (media_dir / img_filename).exists():
+    lines.extend([
         '## Uploaded Photo',
-        f"![Photo]({img_filename})",
+        f"![Photo](media/{img_filename})",
         ''
     ])
 
-# === WRITE FILE ===
+# === WRITE THE .md FILE ===
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
 print(f"✅ Created: {md_file}")
