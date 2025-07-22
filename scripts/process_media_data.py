@@ -6,8 +6,9 @@ from pathlib import Path
 from datetime import datetime
 
 # === CONFIGURATION ===
-JSON_PATH   = Path("data/Template_for_Media_Processes.json")
-OUTPUT_ROOT = Path('.')
+JSON_PATH          = Path("data/Template_for_Media_Processes.json")
+OUTPUT_ROOT        = Path('.')
+GITHUB_REPO_BASE   = "https://github.com/marinedatacentre/1._Handbook/blob/main"
 
 # === LOAD JSON ===
 if not JSON_PATH.exists():
@@ -15,19 +16,17 @@ if not JSON_PATH.exists():
 with JSON_PATH.open("r", encoding="utf-8") as f:
     row = json.load(f)
 
-# === HELPER ===
+# === HELPERS ===
 def get_value(key: str) -> str:
     v = row.get(key, "")
     if isinstance(v, list):
         return ", ".join(map(str, v)).strip()
     return str(v or "").strip()
 
-# === ESCAPE Markdown helper ===
 _SPECIAL_MD_CHARS = set(r"\`*_{}[]()#+-.!|")
 def escape_md(text: str) -> str:
     return "".join(f"\\{c}" if c in _SPECIAL_MD_CHARS else c for c in text)
 
-# === ROUTING ===
 def determine_section() -> str:
     keys = [
         "r193faaedd19c49669e0600e0d11edfca",  # Handbook
@@ -41,16 +40,14 @@ def determine_section() -> str:
             return sec
     return "Uncategorized"
 
-section = determine_section()
-
 # === METADATA QIDs ===
-TITLE_QID   = "r090df130b6a14e4da6842248a6fd9292"  # Title
-NUMBER_QID  = "rb161d63d7baa4ffb9f61ac63846ca8c8"  # Number
-AUTHOR_QID  = "r5bc371d4242c4f09b7b7980d18211809"  # Created by
-DATE_QID    = "submitDate"                       # submission timestamp
-REVIEW_QID  = "r66c909f82883482fa07d3462e89e01e1"  # Review Period
-INFO_QID    = "r97dc9b3936644c09a527fade2a8c2ced"  # Information textbox
-PHOTO_QID   = "r072985e75ce540dc8129db3d105d0737"  # File upload JSON array
+TITLE_QID   = "r090df130b6a14e4da6842248a6fd9292"
+NUMBER_QID  = "rb161d63d7baa4ffb9f61ac63846ca8c8"
+AUTHOR_QID  = "r5bc371d4242c4f09b7b7980d18211809"
+DATE_QID    = "submitDate"
+REVIEW_QID  = "r66c909f82883482fa07d3462e89e01e1"
+INFO_QID    = "r97dc9b3936644c09a527fade2a8c2ced"
+PHOTO_QID   = "r072985e75ce540dc8129db3d105d0737"
 
 # === EXTRACT METADATA ===
 meta = {
@@ -62,42 +59,43 @@ meta = {
     'info':   get_value(INFO_QID)
 }
 
-# === PREPARE OUTPUT PATHS ===
+# === OUTPUT PATHS ===
+section   = determine_section()
 out_dir   = OUTPUT_ROOT / section
 media_dir = out_dir / "media"
 out_dir.mkdir(parents=True, exist_ok=True)
 media_dir.mkdir(parents=True, exist_ok=True)
 
-# Make safe base strings
 safe_num   = meta['number'].replace(' ', '_').replace('/', '-')
 safe_title = meta['title'].replace(' ', '_').replace('/', '-')
 md_file    = out_dir / f"{safe_num}_{safe_title}.md"
 
-# === PARSE IMAGE URLS + FILENAMES ===
-files = json.loads(get_value(PHOTO_QID) or '[]')
+# === PARSE ALL UPLOADED IMAGES ===
+files  = json.loads(get_value(PHOTO_QID) or '[]')
 images = []  # list of (local_filename, remote_url)
-
-for idx, file_info in enumerate(files, start=1):
-    remote = file_info.get('link')
-    orig   = file_info.get('name', '')
+for idx, info in enumerate(files, start=1):
+    remote = info.get('link')
+    orig   = info.get('name', '')
     ext    = Path(orig).suffix or ".jpg"
     local  = f"{safe_num}_{safe_title}_{idx}{ext}"
     images.append((local, remote))
 
-# === DOWNLOAD ALL IMAGES INTO media/ ===
+# === DOWNLOAD IMAGES ===
 for local_name, remote_url in images:
     if not remote_url:
         continue
     target = media_dir / local_name
     try:
-        # GitHub API raw download header, or fallback to raw.githubusercontent
-        resp = requests.get(remote_url,
-                            headers={'Accept': 'application/vnd.github.v3.raw'},
-                            timeout=10)
+        # GitHub API raw download
+        resp = requests.get(
+            remote_url,
+            headers={'Accept': 'application/vnd.github.v3.raw'},
+            timeout=10
+        )
         resp.raise_for_status()
         target.write_bytes(resp.content)
     except Exception:
-        # fallback to urllib if requests fails
+        # fallback to urllib if needed
         try:
             urllib.request.urlretrieve(remote_url, target)
         except Exception as e:
@@ -109,7 +107,7 @@ lines = [
     f"title: {escape_md(meta['title'])}",
     f"author: {escape_md(meta['author'])}",
 ]
-# Date normalization
+# normalize date
 try:
     dt = datetime.fromisoformat(meta['date'])
     lines.append(f"date: {dt.isoformat()}")
@@ -120,23 +118,19 @@ lines.append('---')
 lines.append('')
 lines.append('## Information')
 
-# Render info with optional header + bullets
+# info body
 info_raw   = meta['info'] or 'N/A'
 info_lines = info_raw.splitlines()
 header     = None
-if info_lines and not info_lines[0].strip().startswith('- '):
+if info_lines and not info_lines[0].startswith('- '):
     header = info_lines[0].strip()
-bullet_items = [
-    line.strip()[2:].strip()
-    for line in info_lines
-    if line.strip().startswith('- ')
-]
-if bullet_items:
+bullets = [l.strip()[2:].strip() for l in info_lines if l.strip().startswith('- ')]
+if bullets:
     parts = []
     if header:
         parts.append(escape_md(header))
     parts.append(
-        '<ul>' + ''.join(f"<li>{escape_md(item)}</li>" for item in bullet_items) + '</ul>'
+        '<ul>' + ''.join(f"<li>{escape_md(b)}</li>" for b in bullets) + '</ul>'
     )
     lines.append(''.join(parts))
 else:
@@ -144,21 +138,18 @@ else:
     lines.append(escaped.replace("\n", "<br/>"))
 lines.append('')
 
-# Images section
+# images section: thumbnails link to the repo file page
 if images:
     title = "Uploaded Photo" + ("s" if len(images) > 1 else "")
     lines.append(f"## {title}")
     lines.append('')
-    for local_name, remote_url in images:
-        local_path = media_dir / local_name
-        if local_path.exists():
-            ref = f"media/{local_name}"
-        else:
-            print(f"⚠️ Warning: {local_name} not found locally; linking to remote URL")
-            ref = remote_url
-        lines.append(f"![Photo]({ref})")
+    for local_name, _ in images:
+        github_url = f"{GITHUB_REPO_BASE}/{section}/media/{local_name}"
+        rel_path   = f"media/{local_name}"
+        # render as markdown: [![](local_thumbnail)](github_file_page)
+        lines.append(f"[![Photo]({rel_path})]({github_url})")
     lines.append('')
 
-# === WRITE THE .md FILE ===
+# write out
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
 print(f"✅ Created: {md_file}")
