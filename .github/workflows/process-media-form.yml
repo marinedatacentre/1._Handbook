@@ -19,9 +19,10 @@ jobs:
         with:
           python-version: '3.10'
 
-      # (No extra deps needed for urllib/json in the script, but you can add here if you ever do)
       - name: Install dependencies
-        run: pip install --upgrade pip
+        run: |
+          pip install --upgrade pip
+          pip install requests
 
       - name: Generate Markdown & download image
         run: python scripts/process_media_data.py
