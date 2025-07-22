@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
-import requests                      # for downloading the image
+import requests
+import urllib.request
 from pathlib import Path
 from datetime import datetime
 
@@ -67,32 +68,40 @@ media_dir = out_dir / "media"
 out_dir.mkdir(parents=True, exist_ok=True)
 media_dir.mkdir(parents=True, exist_ok=True)
 
+# Make safe base strings
 safe_num   = meta['number'].replace(' ', '_').replace('/', '-')
 safe_title = meta['title'].replace(' ', '_').replace('/', '-')
 md_file    = out_dir / f"{safe_num}_{safe_title}.md"
 
-# === PARSE IMAGE URL + ORIGINAL FILENAME ===
+# === PARSE IMAGE URLS + FILENAMES ===
 files = json.loads(get_value(PHOTO_QID) or '[]')
-if files:
-    file_info   = files[0]
-    img_url     = file_info.get('link')
-    orig_name   = file_info.get('name', '')
-    ext         = Path(orig_name).suffix or ".jpg"
-    img_filename = f"{safe_num}_{safe_title}{ext}"
-else:
-    img_url     = None
-    img_filename = None
+images = []  # list of (local_filename, remote_url)
 
-# === DOWNLOAD IMAGE INTO media/ ===
-if img_url and img_filename:
-    dest = media_dir / img_filename
+for idx, file_info in enumerate(files, start=1):
+    remote = file_info.get('link')
+    orig   = file_info.get('name', '')
+    ext    = Path(orig).suffix or ".jpg"
+    local  = f"{safe_num}_{safe_title}_{idx}{ext}"
+    images.append((local, remote))
+
+# === DOWNLOAD ALL IMAGES INTO media/ ===
+for local_name, remote_url in images:
+    if not remote_url:
+        continue
+    target = media_dir / local_name
     try:
-        resp = requests.get(img_url, timeout=10)
+        # GitHub API raw download header, or fallback to raw.githubusercontent
+        resp = requests.get(remote_url,
+                            headers={'Accept': 'application/vnd.github.v3.raw'},
+                            timeout=10)
         resp.raise_for_status()
-        with open(dest, 'wb') as f:
-            f.write(resp.content)
-    except Exception as e:
-        print(f"⚠️ Warning: failed to download image from {img_url}: {e}")
+        target.write_bytes(resp.content)
+    except Exception:
+        # fallback to urllib if requests fails
+        try:
+            urllib.request.urlretrieve(remote_url, target)
+        except Exception as e:
+            print(f"⚠️ Warning: failed to download {remote_url}: {e}")
 
 # === BUILD MARKDOWN ===
 lines = [
@@ -100,7 +109,7 @@ lines = [
     f"title: {escape_md(meta['title'])}",
     f"author: {escape_md(meta['author'])}",
 ]
-# normalize date
+# Date normalization
 try:
     dt = datetime.fromisoformat(meta['date'])
     lines.append(f"date: {dt.isoformat()}")
@@ -111,7 +120,7 @@ lines.append('---')
 lines.append('')
 lines.append('## Information')
 
-# render info with optional header + bullets
+# Render info with optional header + bullets
 info_raw   = meta['info'] or 'N/A'
 info_lines = info_raw.splitlines()
 header     = None
@@ -135,13 +144,20 @@ else:
     lines.append(escaped.replace("\n", "<br/>"))
 lines.append('')
 
-# include the photo from media/
-if img_filename and (media_dir / img_filename).exists():
-    lines.extend([
-        '## Uploaded Photo',
-        f"![Photo](media/{img_filename})",
-        ''
-    ])
+# Images section
+if images:
+    title = "Uploaded Photo" + ("s" if len(images) > 1 else "")
+    lines.append(f"## {title}")
+    lines.append('')
+    for local_name, remote_url in images:
+        local_path = media_dir / local_name
+        if local_path.exists():
+            ref = f"media/{local_name}"
+        else:
+            print(f"⚠️ Warning: {local_name} not found locally; linking to remote URL")
+            ref = remote_url
+        lines.append(f"![Photo]({ref})")
+    lines.append('')
 
 # === WRITE THE .md FILE ===
 md_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
