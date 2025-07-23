@@ -1,0 +1,47 @@
+# .github/workflows/review_flagger.yml
+name: Review Flagger
+
+# allow the Action to push back changes
+permissions:
+  contents: write
+
+on:
+  # run every night at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+  # also allow manual runs for testing
+  workflow_dispatch:
+
+jobs:
+  flag-reviews:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0            # full git history for date lookups
+          persist-credentials: true # so GITHUB_TOKEN can push
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install python-frontmatter GitPython
+
+      - name: Run review flagger
+        run: python scripts/review_flagger.py
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update review flags"
+            git push
+          else
+            echo "✓ No flags needed"
+          fi
