@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 NETMAR Deliverable D7.9.2: ICAN sem antic interoperability cookbooks – Part 2
 International Coastal Atlas Network Cookbook:
 Understanding Metadata

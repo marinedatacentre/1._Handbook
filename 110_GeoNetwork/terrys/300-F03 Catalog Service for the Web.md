@@ -1,10 +1,11 @@
 ---
-process_number: 300-F03
-title: Catalog Service for the Web
 author: Unknown
 created: Unknown
+last_reviewed: '2025-07-08'
 modified: Unknown
+process_number: 300-F03
 review_period: 3 years
+title: Catalog Service for the Web
 ---
 
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3

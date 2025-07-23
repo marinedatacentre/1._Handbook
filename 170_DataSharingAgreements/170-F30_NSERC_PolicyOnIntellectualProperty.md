@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Policy on Intellectual Property**
 
 As of April 1, 2018, NSERC’s Policy on Intellectual Property (IP) has been simplified to provide flexible access to IP developed as a result of NSERC funding, while ensuring that the rights of all participants are protected.

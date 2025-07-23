@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 ***Notes:***
 
 1.  *Prior to submitting the Forage Fish Monitoring data to Pacific Salmon Foundation’s Strait of Georgia (SOG) Data Centre, please complete the checklist to minimize possible entry errors within the dataset.*

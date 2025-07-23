@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Open Government Licence - Canada**
 
 You are encouraged to use the Information that is available under this licence with only a few conditions.

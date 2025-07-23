@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:** If a dataset is acquired that is not available as a REST service elsewhere, and has been approved for public distribution through the Strait of Georgia Data Centre by the data source, please follow the procedure below to add the dataset to the Strait of Georgia Data Centre architecture.
 
 <table>

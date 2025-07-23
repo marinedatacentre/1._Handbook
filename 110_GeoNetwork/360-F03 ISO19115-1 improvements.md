@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **ISO 19115-1 New Capabilities**
 
 **Contents**

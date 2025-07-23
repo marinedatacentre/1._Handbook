@@ -1,10 +1,11 @@
 ---
-process_number: 350-03
-title: Create MEF package for GeoNetwork
 author: Peter
 created: 2015-02-22
+last_reviewed: '2025-07-08'
 modified: 2015-03-23
+process_number: 350-03
 review_period: 3 years
+title: Create MEF package for GeoNetwork
 ---
 
 **Purpose:**

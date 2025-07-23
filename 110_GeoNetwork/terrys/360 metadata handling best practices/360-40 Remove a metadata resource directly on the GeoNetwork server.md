@@ -1,10 +1,11 @@
 ---
-process_number: 360-40
-title: Remove a metadata resource directly on the GeoNetwork server
 author: Peter
 created: 2021-11-10
+last_reviewed: '2025-07-08'
 modified: 2021-11-10
+process_number: 360-40
 review_period: 3 years
+title: Remove a metadata resource directly on the GeoNetwork server
 ---
 
 **Purpose:**

@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 This set of documents explains how to prepare images and data for loading metadata packages in batch.

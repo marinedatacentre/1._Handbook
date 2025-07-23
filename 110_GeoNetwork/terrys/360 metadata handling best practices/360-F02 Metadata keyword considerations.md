@@ -1,10 +1,11 @@
 ---
-process_number: 360-F02
-title: Metadata keyword considerations
 author: Terry Curran
 created: 2015-03-20
+last_reviewed: '2025-07-08'
 modified: 2019-09-10
+process_number: 360-F02
 review_period: 3 years
+title: Metadata keyword considerations
 ---
 
 Last Edit Date: 2015-March-20 330-F02

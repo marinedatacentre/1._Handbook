@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **CodeList Definition: mode in which the data is represented**
 
 | **Entry** | **Description** | **Source** | **Notes** |

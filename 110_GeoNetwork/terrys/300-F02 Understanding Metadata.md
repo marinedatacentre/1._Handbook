@@ -1,10 +1,11 @@
 ---
-process_number: 300-F02
-title: Understanding Metadata
 author: Unknown
 created: Unknown
+last_reviewed: '2025-07-08'
 modified: Unknown
+process_number: 300-F02
 review_period: 3 years
+title: Understanding Metadata
 ---
 
 NETMAR Deliverable D7.9.2: ICAN sem antic interoperability cookbooks – Part 2

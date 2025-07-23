@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 This document describes how to create a metadata exchange format (mef) package for loading groups of metadata with accompanying files into GeoNetwork. There is sufficient detail required for the graphic overview and data files being added into the mef that it is best constructed programmatically.

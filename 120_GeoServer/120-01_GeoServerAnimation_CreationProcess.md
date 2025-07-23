@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 To create an animation using GeoServer that employs the time dimension capability of a layer, while pulling data from a PostGIS database. The final result is a gif created through a get map request, showing the change of a selected attribute over time.

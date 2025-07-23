@@ -1,10 +1,11 @@
 ---
-process_number: 350-01
-title: Adding thumbnail links to metadata
 author: Peter
 created: 2015-02-24
+last_reviewed: '2025-07-08'
 modified: 2024-04-10
+process_number: 350-01
 review_period: 3 years
+title: Adding thumbnail links to metadata
 ---
 
 **Purpose:**

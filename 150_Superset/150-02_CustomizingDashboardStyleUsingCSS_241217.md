@@ -1,10 +1,11 @@
 ---
-process_number: 150-02
-title: CustomizingDashboardStyleUsingCSS_241217
 author: Paulina Salinas Ruiz
 created: 2024-04-10
+last_reviewed: '2025-07-08'
 modified: 2025-01-08
+process_number: 150-02
 review_period: 3 years
+title: CustomizingDashboardStyleUsingCSS_241217
 ---
 
 **Purpose:**

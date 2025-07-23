@@ -1,10 +1,11 @@
 ---
-process_number: 110-08
-title: GeoNetwork_Access+Installation_250204
 author: Paulina Salinas Ruiz
 created: 2025-02-04
+last_reviewed: '2025-07-08'
 modified: 2025-02-04
+process_number: 110-08
 review_period: 3 years
+title: GeoNetwork_Access+Installation_250204
 ---
 
 > **Purpose:  **

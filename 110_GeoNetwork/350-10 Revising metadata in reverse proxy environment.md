@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 Recover error in \*not\* setting GeoNetwork parameters correctly in Reverse Proxy environment. The website normally has

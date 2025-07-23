@@ -1,10 +1,11 @@
 ---
-process_number: 330-09
-title: Modifying jNAP output to change RI_ codes
 author: Peter
 created: 2017-02-26
+last_reviewed: '2025-07-08'
 modified: 2024-04-15
+process_number: 330-09
 review_period: 3 years
+title: Modifying jNAP output to change RI_ codes
 ---
 
 **Purpose:**

@@ -1,10 +1,11 @@
 ---
-process_number: 370-11
-title: Overview - Adding Raw Data to the SoGDC for Public Use
 author: Peter
 created: 2022-10-27
+last_reviewed: '2025-07-08'
 modified: 2024-02-29
+process_number: 370-11
 review_period: 3 years
+title: Overview - Adding Raw Data to the SoGDC for Public Use
 ---
 
 **Purpose:** If a dataset is acquired that is not available as a REST service elsewhere, and has been approved for public distribution through the Strait of Georgia Data Centre by the data source, please follow the procedure below to add the dataset to the Strait of Georgia Data Centre architecture.

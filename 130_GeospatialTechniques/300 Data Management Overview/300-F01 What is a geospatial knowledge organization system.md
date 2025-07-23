@@ -1,10 +1,11 @@
 ---
-process_number: 300-F01
-title: What is a geospatial knowledge organization system
 author: Unknown
 created: Unknown
+last_reviewed: '2025-07-08'
 modified: Unknown
+process_number: 300-F01
 review_period: 3 years
+title: What is a geospatial knowledge organization system
 ---
 
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 1

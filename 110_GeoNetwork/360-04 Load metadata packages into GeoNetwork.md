@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 This document describes how to load metadata into a GeoNetwork server.

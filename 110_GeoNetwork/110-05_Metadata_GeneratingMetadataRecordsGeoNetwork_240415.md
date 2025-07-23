@@ -1,10 +1,11 @@
 ---
-process_number: 110-05
-title: Metadata_GeneratingMetadataRecordsGeoNetwork_240415
 author: Paulina Salinas Ruiz
 created: 2024-04-15
+last_reviewed: '2025-07-08'
 modified: 2024-11-26
+process_number: 110-05
 review_period: 3 years
+title: Metadata_GeneratingMetadataRecordsGeoNetwork_240415
 ---
 
 **Purpose:**

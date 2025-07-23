@@ -1,10 +1,11 @@
 ---
-process_number: 330-10
-title: Finding and fixing metadata record errors
 author: Peter
 created: 2019-12-12
+last_reviewed: '2025-07-08'
 modified: 2020-06-03
+process_number: 330-10
 review_period: 3 years
+title: Finding and fixing metadata record errors
 ---
 
 **Purpose:**

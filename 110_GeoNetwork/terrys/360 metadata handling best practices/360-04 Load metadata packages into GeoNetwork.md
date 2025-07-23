@@ -1,10 +1,11 @@
 ---
-process_number: 360-04
-title: Load metadata packages into GeoNetwork
 author: Peter
 created: 2014-05-10
+last_reviewed: '2025-07-08'
 modified: 2019-09-10
+process_number: 360-04
 review_period: 3 years
+title: Load metadata packages into GeoNetwork
 ---
 
 **Purpose:**

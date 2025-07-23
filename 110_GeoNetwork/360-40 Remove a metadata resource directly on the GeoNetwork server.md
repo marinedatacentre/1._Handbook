@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 This is occasionally required if the resource cannot be removed using the GeoNetwork Administration access. Extreme caution is cautioned, because it is easy to disable GeoNetwork.

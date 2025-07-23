@@ -1,10 +1,11 @@
 ---
-process_number: 360-30
-title: Batch Find and fix metadata record errors
 author: Peter
 created: 2019-12-12
+last_reviewed: '2025-07-08'
 modified: 2023-02-15
+process_number: 360-30
 review_period: 3 years
+title: Batch Find and fix metadata record errors
 ---
 
 **Purpose:**

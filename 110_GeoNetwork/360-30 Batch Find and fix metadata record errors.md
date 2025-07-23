@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 **Purpose:**
 
 How to perform editing multiple records – adding and replacing content, adding and deleting elements. The process is:

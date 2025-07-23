@@ -1,10 +1,11 @@
 ---
-process_number: 350-02
-title: Adding data links to metadata
 author: Peter
 created: 2015-02-25
+last_reviewed: '2025-07-08'
 modified: 2015-03-20
+process_number: 350-02
 review_period: 3 years
+title: Adding data links to metadata
 ---
 
 **Purpose:**

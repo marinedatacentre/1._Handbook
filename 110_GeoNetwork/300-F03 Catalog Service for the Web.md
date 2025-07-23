@@ -1,3 +1,7 @@
+---
+last_reviewed: '2025-06-26'
+---
+
 NETMAR Deliverable D7.9.2: ICAN semantic interoperability cookbooks – Part 3
 International Coastal Atlas Network Cookbook:
 Establishing a CSW metadata catalogue
