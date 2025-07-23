@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 
 # === CONFIGURATION ===
-JSON_PATH = Path("data/Template for Processes.json")  # raw JSON filepath
+JSON_PATH = Path("data/Template_for Processes.json")  # raw JSON filepath
 
 # === LOAD JSON ===
 if not JSON_PATH.exists():
@@ -27,6 +27,7 @@ def escape_md(text: str) -> str:
     return "".join(f"\\{c}" if c in _SPECIAL_MD_CHARS else c for c in text)
 
 # === SECTION FOLDER ===
+
 def determine_section() -> str:
     """Choose subfolder based on known Section/Category QIDs."""
     keys = [
@@ -71,6 +72,9 @@ filename = f"{meta['number'].replace(' ','_')}_{meta['title'].replace(' ','_')}.
 out_file = out_dir / filename
 
 # === BUILD MARKDOWN ===
+# get today for last_reviewed
+today = datetime.utcnow().date().isoformat()
+
 lines = [
     '---',
     f"title: {escape_md(meta['title'])}",
@@ -81,10 +85,17 @@ try:
     lines.append(f"date: {dt.isoformat()}")
 except ValueError:
     lines.append(f"date: {escape_md(meta['date'])}")
+
+# existing review_period
+lines.append(f"review_period: {escape_md(meta['period'])}")
+# new last_reviewed field
+today = datetime.utcnow().date().isoformat()
+lines.append(f"last_reviewed: {today}")
+# close frontmatter
+lines.append('---')
+lines.append('')
+
 lines += [
-    f"review_period: {escape_md(meta['period'])}",
-    '---',
-    '',
     '## Purpose',
     escape_md(meta['purpose'] or 'N/A'),
     '',
