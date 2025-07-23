@@ -20,7 +20,7 @@ jobs:
           pip install python-frontmatter GitPython
 
       - name: Run `add_last_reviewed.py`
-        run: python .github/scripts/add_last_reviewed.py
+        run: python scripts/add_last_reviewed.py
 
       - name: Commit & push changes
         run: |
