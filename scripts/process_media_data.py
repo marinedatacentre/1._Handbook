@@ -82,7 +82,6 @@ for file_info in files:
     if not remote or not orig:
         continue
 
-    # slugify original name (stem) + preserve extension
     orig_stem = Path(orig).stem
     safe_orig = orig_stem.replace(' ', '_').replace('/', '-')
     ext       = Path(orig).suffix or ".jpg"
@@ -102,13 +101,15 @@ for local_name, remote_url in images:
         resp.raise_for_status()
         target.write_bytes(resp.content)
     except Exception:
-        # fallback if requests fails
         try:
             urllib.request.urlretrieve(remote_url, target)
         except Exception as e:
             print(f"⚠️ Warning: failed to download {remote_url}: {e}")
 
 # === BUILD THE MARKDOWN ===
+# stamp today as last_reviewed
+today = datetime.utcnow().date().isoformat()
+
 lines = [
     '---',
     f"title: {escape_md(meta['title'])}",
@@ -120,12 +121,14 @@ try:
     lines.append(f"date: {dt.isoformat()}")
 except Exception:
     lines.append(f"date: {escape_md(meta['date'])}")
+# existing review_period
 lines.append(f"review_period: {escape_md(meta['period'])}")
+# new last_reviewed field
+type: ignore lines.append(f"last_reviewed: {today}")
 lines.append('---')
 lines.append('')
-lines.append('## Information')
 
-# info body
+lines.append('## Information')
 info_raw   = meta['info'] or 'N/A'
 info_lines = info_raw.splitlines()
 header     = None
@@ -144,7 +147,6 @@ else:
     lines.append(escape_md(info_raw).replace("\n", "<br/>"))
 lines.append('')
 
-# images section: use original-filename–based local links
 if images:
     title = "Uploaded Photo" + ("s" if len(images) > 1 else "")
     lines.append(f"## {title}")
@@ -152,7 +154,6 @@ if images:
     for local_name, _ in images:
         github_url = f"{GITHUB_REPO_BASE}/{section}/media/{local_name}"
         rel_path   = f"media/{local_name}"
-        # clickable thumbnail
         lines.append(f"[![Photo]({rel_path})]({github_url})")
     lines.append('')
 
