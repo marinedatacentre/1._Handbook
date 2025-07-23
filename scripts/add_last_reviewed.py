@@ -19,10 +19,6 @@ def get_created_date(path):
     return commits[0].committed_datetime.date().isoformat()
 
 def process_folder(folder):
-    """
-    Walks the given folder and adds `last_reviewed` to any .md
-    file missing it in front-matter.
-    """
     for dirpath, _, filenames in os.walk(folder):
         for fn in filenames:
             if not fn.lower().endswith('.md'):
@@ -32,15 +28,17 @@ def process_folder(folder):
             post = frontmatter.load(full_path)
 
             if 'last_reviewed' in post.metadata:
-                continue  # already seeded
+                continue
 
             created = get_created_date(full_path)
             post.metadata['last_reviewed'] = created
 
-            with open(full_path, 'w', encoding='utf-8') as f:
+            # <-- open in binary mode so frontmatter.dump can write bytes
+            with open(full_path, 'wb') as f:
                 frontmatter.dump(post, f)
 
             print(f"Added last_reviewed: {created} → {full_path}")
+
 
 if __name__ == "__main__":
     # scan every top-level entry; if it's a folder whose name starts with a digit, process it
