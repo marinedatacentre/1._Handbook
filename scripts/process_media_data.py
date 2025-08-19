@@ -124,7 +124,7 @@ except Exception:
 # existing review_period
 lines.append(f"review_period: {escape_md(meta['period'])}")
 # new last_reviewed field
-type: ignore lines.append(f"last_reviewed: {today}")
+lines.append(f"last_reviewed: {today}")
 lines.append('---')
 lines.append('')
 
