@@ -4,7 +4,7 @@ from pathlib import Path
 from datetime import datetime
 
 # === CONFIGURATION ===
-JSON_PATH = Path("data/Template_for Processes.json")  # raw JSON filepath
+JSON_PATH = Path("data/Template for Processes.json")  # raw JSON filepath
 
 # === LOAD JSON ===
 if not JSON_PATH.exists():
