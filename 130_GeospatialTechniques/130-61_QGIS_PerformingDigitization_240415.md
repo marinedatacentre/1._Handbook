@@ -42,7 +42,10 @@ This document is meant to outline the procedure for creating or modifying a laye
 <ul>
 <li><p>Open QGIS. Go to Plugins Menu -&gt; Manage and Install Plugins,</p></li>
 <li><p>In the Plugins Window, search for QuickMapServices then click the Install button,</p></li>
-<li><p>After it installs, you should be able to find QuickMapServices button in the Web Toolbar.</p></li>
+<li><p>After installation, go to Web → QuickMapServices → Settings, </p></li>
+<li><p>Click the "More Services" tab,</p></li>
+<li><p>Click "Get contributed pack" ,</p></li>
+<li><p>Now access ESRI maps via Web → QuickMapServices → ESRI</p></li>
 </ul></td>
 <td>Note: Basemaps are the background maps that let you know what part of the world you are viewing.</td>
 </tr>
